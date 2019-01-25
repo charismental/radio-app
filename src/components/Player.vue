@@ -37,13 +37,14 @@
       <i class="material-icons md-84">more_horiz</i>
     </div>
     <div class="volume-slider">
-      <input type="range">
+      <volume />
     </div>
   </div>
 </template>
 
 <script>
 import Timer from './Timer.vue'
+import Volume from './Volume.vue'
 import {
   mapState,
   mapActions,
@@ -52,7 +53,8 @@ import {
 export default {
   name: 'Player',
   components: {
-    Timer
+    Timer,
+    Volume
   },
   data () {
     return {
@@ -160,6 +162,9 @@ export default {
   padding-left: 15px;
 }
 .current-meta .title {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
   font-weight: 300;
   font-size: 18px;
   display: block;
@@ -193,9 +198,6 @@ export default {
   grid-area: j;
   padding-left: 15px;
   padding-right: 15px;
-}
-.volume-slider input {
-  width: 100%;
 }
 @media screen and (min-width: 768px) {
     #player {
