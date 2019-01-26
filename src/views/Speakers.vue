@@ -2,27 +2,52 @@
     <div id="speaker-container">
         <div id="img-container">
             <ul id="speaker-list">
-                <li>Alistair Begg
-                    <img src="./assets/AlistairBeggAvatar.jpm" alt="Alistair Begg">
-                    <div id="times">12:30am, 3:00pm</div>
-                </li>
-                <li>Alexander Scourby
-                    <img src="./assets/alexander-scourby2.jpg" alt="Alexander Scourby">
-                    <div id="times"></div>
-                </li>
-                <li>Chuck Missler
-                    <img src="./assets/chuck.png" alt="Chuck Missler">
-                    <div id="times"></div>
-                </li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li> {{ speakers[0].name}}
+                    <img src= {{ speakers[0].img }} alt="Alistair Begg">
+                    <div id="times">{{ speakers[0].time }}</div>
+                
             </ul>
         </div>
     </div>
 </template>
+
+<script>
+export default {
+    speakers: [
+        {name: 'Alistair Begg',
+         Time: 00,
+         img: './assets/AlistairBeggAvatar.jpg'},
+        {name: 'Alexander Scourby', 
+         Time: 00,
+         img: './assets/alexander-scourby2.jpg'},
+        {name: 'Jamie Buckingham',
+        Time: 00,
+        img: './assets/jamie.jpg'},
+        {name: 'Chuck Missler',
+        Time: 00,
+        img: './assets/chuck.png'},
+        {name: 'Derek Prince',
+        Time: 00,
+        img: './assets/derek.jpg'},
+        {name: 'Paul Washer',
+        Time: 00,
+        img: './assets/paul.jpg'},
+        {name: 'Curtis Dougherty',
+        Time: 00,
+        img: './assets/curtis.jpg'},
+        {name: 'Ern Baxter',
+        Time: 00},
+        {name: 'John Casteel',
+        Time: 00,
+        img: './assets/john.jpg'},
+        {name: 'Steve Schell',
+        Time:00,
+        img: './assets/steve_schell.jpg '}
+
+    ]
+}
+</script>
+
 
 <style>
 #speaker-container {
