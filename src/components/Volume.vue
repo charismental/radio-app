@@ -5,6 +5,7 @@
 </template>
 
 <script>
+
 import { mapState } from 'vuex'
 
 export default {
@@ -24,12 +25,12 @@ export default {
   },
   mounted () {
     // eslint-disable-next-line
-    audio.volume = this.volume / 100
+    audio.volume = this.volume
   },
   watch: {
     volume () {
       // eslint-disable-next-line
-        audio.volume = this.volume / 100
+        audio.volume = this.volume
     }
   }
 }
