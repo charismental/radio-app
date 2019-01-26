@@ -1,11 +1,12 @@
 <template>
-    <div id="speaker-container">
+    <div id="speaker-container" class="clearfix"> <!-- collapsed container -->
         <div id="img-container">
-            <ul id="speaker-list">
+            <ul id="speaker-list"> <!-- scrollabel array loop of speakers -->
                 <li> {{ speakers[0].name}}
                     <img src= {{ speakers[0].img }} alt="Alistair Begg">
                     <div id="times">{{ speakers[0].time }}</div>
-                
+                </li>
+                    <!-- LOOP -->
             </ul>
         </div>
     </div>
@@ -50,7 +51,10 @@ export default {
 
 
 <style>
-#speaker-container {
+#speaker-container .clearfix:after{
+    content: "";
+    display: table;
+    clear: both;
     display: block;
     grid-area: e;
 }
