@@ -9,10 +9,9 @@
       <i class="material-icons md-36">navigate_next</i>
     </div>
     <div class="current-album-art">
-      <!-- <img src="https://via.placeholder.com/300" alt="random picture"> -->
-        <a href="#" target="_blank">
-            <img :src="itemImg(songInfo)" onerror="this.src='https://radiomv.org/samHTMweb/customMissing.jpg'" :alt="songInfo.title" />
-        </a>
+      <a href="#" target="_blank">
+          <img :src="itemImg(songInfo)" onerror="this.src='https://radiomv.org/samHTMweb/customMissing.jpg'" :alt="songInfo.title" />
+      </a>
     </div>
     <div class="current-meta">
       <span class="title">{{ songInfo.title }}</span>
@@ -106,8 +105,6 @@ export default {
 }
 .modal-inner {
   width: 100%;
-  text-align: center;
-  padding-top: 5px;
 }
 .more-info-header {
   margin: 0 auto;
@@ -135,6 +132,7 @@ export default {
   z-index: 1010;
   background: white;
   color: #696969;
+  text-align: center;
 }
 .modal-overlay {
   z-index: 1000;
@@ -212,7 +210,6 @@ export default {
   margin-right: auto;
   height: 300px;
   max-width: 300px;
-  /* width: 100%; */
   border: 2px solid white;
   border-radius: 15px;
 }
