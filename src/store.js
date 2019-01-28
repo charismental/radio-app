@@ -8,7 +8,7 @@ export default new Vuex.Store({
   state: {
     // volume
     previousVolume: '',
-    volume: 75,
+    volume: 90,
     volumeAdjust: false,
     // fetch intervals
     refreshInterval: 10000,
