@@ -33,12 +33,21 @@
         Your browser does not support the audio element.
         </audio>
     </div>
-    <div class="more-info">
+    <div class="more-info" @click="toggleMoreInfoModal">
       <i class="material-icons md-84">more_horiz</i>
     </div>
     <div class="volume-slider">
       <volume />
     </div>
+    <transition-group name="fade">
+      <div class="more-info-modal" v-if="moreInfoModalDisplay" key="1">
+        <div class="modal-inner">
+          <span class="more-info-header">More Info</span>
+          <div class="divider"><hr></div>
+        </div>
+      </div>
+      <div class="modal-overlay" v-show="moreInfoModalDisplay" @click="toggleMoreInfoModal" key="2"></div>
+    </transition-group>
   </div>
 </template>
 
@@ -63,7 +72,8 @@ export default {
   },
   methods: {
     ...mapMutations([
-      'historyToggle'
+      'historyToggle',
+      'toggleMoreInfoModal'
     ]),
     ...mapActions([
       'playPause',
@@ -81,13 +91,60 @@ export default {
   computed: {
     ...mapState([
       'songInfo',
-      'isPlaying'
+      'isPlaying',
+      'moreInfoModalDisplay'
     ])
   }
 }
 </script>
 
 <style scoped>
+.modal-inner hr  {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(105, 105, 105, 0), rgba(105, 105, 105, 0.75), rgba(105, 105, 105, 0));
+}
+.modal-inner {
+  width: 100%;
+  text-align: center;
+  padding-top: 5px;
+}
+.more-info-header {
+  margin: 0 auto;
+  font-weight: 500;
+  font-size: 32px;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .8s;
+}
+/* start */
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+/* end */
+.fade-enter-to, .fade-leave {
+  opacity: 1;
+}
+.more-info-modal {
+  position: absolute;
+  display: inline-flex;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 30vh;
+  z-index: 1010;
+  background: white;
+  color: #696969;
+}
+.modal-overlay {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+}
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }
 .material-icons.md-36 { font-size: 36px; }
@@ -96,6 +153,7 @@ export default {
 .material-icons.md-96 { font-size: 96px; }
 .material-icons { cursor: pointer; }
 #player {
+  position: relative;
   background: url(../assets/background.png) no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -103,7 +161,7 @@ export default {
   background-size: cover;
   color: #FFF;
   display: grid;
-  height: 640px;
+  height: 100vh;
   grid-template-columns: 1fr 1fr 2fr 2fr;
   grid-template-rows: 1fr 7fr 1fr 2fr 1fr;
   grid-template-areas:"a b b c"
@@ -120,7 +178,7 @@ export default {
   background-size: cover;
   color: #FFF;
   display: grid;
-  height: 640px;
+  height: 100vh;
   grid-template-columns: 2fr 2fr 2fr;
   grid-template-rows: 1fr 8fr 2fr 1fr;
   grid-template-areas:"a b c"
@@ -154,6 +212,7 @@ export default {
   margin-right: auto;
   height: 300px;
   max-width: 300px;
+  /* width: 100%; */
   border: 2px solid white;
   border-radius: 15px;
 }
@@ -170,7 +229,18 @@ export default {
   display: block;
 }
 .current-meta .artist {
-  font-weight: 100px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-weight: 100;
+  font-size: 14px;
+  display: block;
+}
+.current-meta .album {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-weight: 100;
   font-size: 14px;
   display: block;
 }
@@ -206,6 +276,11 @@ export default {
     margin: 0 auto;
     width: 360px;
     height: 640px;
+  }
+  .more-info-modal {
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    width: 360px;
   }
 }
 </style>

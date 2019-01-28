@@ -23,9 +23,13 @@ export default new Vuex.Store({
     // toggles
     history: false,
     isPlaying: false,
-    loading: true
+    loading: true,
+    moreInfoModalDisplay: false
   },
   mutations: {
+    toggleMoreInfoModal (state) {
+      state.moreInfoModalDisplay = !state.moreInfoModalDisplay
+    },
     volumeAdjustToggle (state) {
       state.volumeAdjust = !state.volumeAdjust
     },
