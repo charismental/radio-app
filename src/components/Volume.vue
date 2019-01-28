@@ -25,12 +25,12 @@ export default {
   },
   mounted () {
     // eslint-disable-next-line
-    audio.volume = this.volume
+    audio.volume = this.volume / 100
   },
   watch: {
     volume () {
       // eslint-disable-next-line
-        audio.volume = this.volume
+        audio.volume = this.volume / 100
     }
   }
 }
