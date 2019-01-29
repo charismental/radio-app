@@ -24,7 +24,7 @@ export default {
 .minimized-meta {
   padding-top: 5px;
   padding-left: 0;
-  max-width: 210px;
+  max-width: 200px;
 }
 .expanded-meta {
   padding-left: 15px;
