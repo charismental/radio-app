@@ -1,11 +1,16 @@
 <template>
-    <div class="timer"><span>{{ time || "00:00" }}</span></div>
+    <div :class="[expandedPlayer ? 'timer' : 'minimized-timer']"><span>{{ time || "00:00" }}</span></div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'Timer',
   computed: {
+    ...mapState([
+      'expandedPlayer'
+    ]),
     currentTime: function () {
       return this.$store.state.currentTime
     },
@@ -25,15 +30,17 @@ export default {
 </script>
 
 <style>
-/* .timer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-} */
 .timer span {
   font-size: 66px;
   transform: scale(.7, 1);
   display: inline-block;
   margin-left: -10px;
+  margin-top: 5px;
+}
+.minimized-timer span {
+  font-size: 36px;
+  transform: scale(.7, 1);
+  display: inline-block;
+  margin-left: 5px;
 }
 </style>
