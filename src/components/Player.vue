@@ -1,21 +1,13 @@
 <template>
   <div :class="[expandedPlayer ? 'player' : 'player1']">
     <top-bar />
-    <transition name="fade">
-      <current-album-art :song="songInfo" />
-    </transition>
-    <div class="current-meta" :class="[expandedPlayer ? 'expanded-meta' : 'minimized-meta']">
-      <span class="title">{{ songInfo.title }}</span>
-      <span class="artist">{{ songInfo.artist }}</span>
-      <span class="album">{{ songInfo.album }}</span>
-    </div>
-      <feedback />
-    <div class="timer">
-        <timer />
-    </div>
+    <current-album-art :song="songInfo" />
+    <current-meta :song="songInfo" />
+    <feedback />
+    <timer />
     <div class="play-container" @click="playPause" @keyup.space="playPause">
-      <i class="material-icons" :class="[expandedPlayer ? 'md-96' : 'md-36']" v-if="!isPlaying">play_circle_outline</i>
-      <i class="material-icons" :class="[expandedPlayer ? 'md-96' : 'md-36']" v-else>pause_circle_outline</i>
+      <i class="material-icons" :class="[expandedPlayer ? 'md-96' : 'md-48']" v-if="!isPlaying">play_circle_outline</i>
+      <i class="material-icons" :class="[expandedPlayer ? 'md-96' : 'md-48']" v-else>pause_circle_outline</i>
         <audio id="audio" :src="currentStream">
         Your browser does not support the audio element.
         </audio>
@@ -23,18 +15,8 @@
     <div class="more-info" @click="toggleMoreInfoModal">
       <i class="material-icons" :class="[expandedPlayer ? 'md-84' : 'md-36']">more_horiz</i>
     </div>
-    <div class="volume-slider">
-      <volume />
-    </div>
-    <transition-group name="fade">
-      <div class="more-info-modal" v-if="moreInfoModalDisplay" key="1">
-        <div class="modal-inner">
-          <span class="more-info-header">More Info</span>
-          <div class="divider"><hr></div>
-        </div>
-      </div>
-      <div class="modal-overlay" v-show="moreInfoModalDisplay" @click="toggleMoreInfoModal" key="2"></div>
-    </transition-group>
+    <volume />
+    <more-info-modal />
   </div>
 </template>
 
@@ -44,11 +26,9 @@ import Volume from './Volume.vue'
 import Feedback from './Feedback.vue'
 import TopBar from './TopBar.vue'
 import CurrentAlbumArt from './CurrentAlbumArt.vue'
-
-import {
-  mapState,
-  mapActions,
-  mapMutations } from 'vuex'
+import CurrentMeta from './CurrentMeta.vue'
+import MoreInfoModal from './MoreInfoModal.vue'
+import { mapState, mapActions, mapMutations } from 'vuex'
 
 export default {
   name: 'Player',
@@ -57,7 +37,9 @@ export default {
     Timer,
     Volume,
     TopBar,
-    CurrentAlbumArt
+    CurrentAlbumArt,
+    CurrentMeta,
+    MoreInfoModal
   },
   data () {
     return {
@@ -66,7 +48,6 @@ export default {
   },
   methods: {
     ...mapMutations([
-      'historyToggle',
       'toggleMoreInfoModal'
     ]),
     ...mapActions([
@@ -86,51 +67,6 @@ export default {
 </script>
 
 <style scoped>
-.modal-inner hr  {
-  border: 0;
-  height: 1px;
-  background-image: linear-gradient(to right, rgba(105, 105, 105, 0), rgba(105, 105, 105, 0.75), rgba(105, 105, 105, 0));
-}
-.modal-inner {
-  width: 100%;
-}
-.more-info-header {
-  margin: 0 auto;
-  font-weight: 500;
-  font-size: 32px;
-}
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .8s;
-}
-/* start */
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-}
-/* end */
-.fade-enter-to, .fade-leave {
-  opacity: 1;
-}
-.more-info-modal {
-  position: absolute;
-  display: inline-flex;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 30vh;
-  z-index: 1010;
-  background: white;
-  color: #696969;
-  text-align: center;
-}
-.modal-overlay {
-  z-index: 1000;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-}
 .player {
   transition: 1s;
   position: relative;
@@ -177,39 +113,7 @@ export default {
 .current-meta {
   grid-area: e;
 }
-.minimized-meta {
-  padding-top: 5px;
-  padding-left: 0;
-}
-.expanded-meta {
-  padding-left: 15px;
-  padding-top: 10px;
-}
-.current-meta .title {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  font-weight: 300;
-  font-size: 18px;
-  display: block;
-}
-.current-meta .artist {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  font-weight: 100;
-  font-size: 14px;
-  display: block;
-}
-.current-meta .album {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  font-weight: 100;
-  font-size: 14px;
-  display: block;
-}
-feedback {
+.feedback {
   grid-area: f;
 }
 .timer {
@@ -226,8 +130,6 @@ feedback {
 }
 .volume-slider {
   grid-area: j;
-  padding-left: 15px;
-  padding-right: 15px;
 }
 @media screen and (min-width: 768px) {
     .player, .player1 {
@@ -236,11 +138,6 @@ feedback {
     margin: 0 auto;
     width: 360px;
     height: 640px;
-  }
-  .more-info-modal {
-    border-radius: 0 0 10px 10px;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-    width: 360px;
   }
 }
 .material-icons.md-18 { font-size: 18px; }
