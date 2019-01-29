@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="volume-slider">
         <input type="range" id="volume-slider-input" name="volume-slider" min="25" max="100" step=".75" v-model="volume">
     </div>
 </template>
@@ -43,8 +43,10 @@ export default {
 <style>
 #volume-slider-input {
     width: 100%;
+    cursor: pointer;
 }
 .volume-slider {
-    cursor: pointer;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 </style>
