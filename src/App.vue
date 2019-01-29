@@ -1,18 +1,18 @@
 <template>
   <div id="app">
-    <radio-player />
+    <player />
     <router-view v-if="!expandedPlayer" />
   </div>
 </template>
 <script>
 // @ is an alias to /src
-import RadioPlayer from '@/components/RadioPlayer.vue'
+import Player from '@/components/Player.vue'
 import { mapState } from 'vuex'
 
 export default {
   name: 'home',
   components: {
-    RadioPlayer
+    Player
   },
   computed: {
     ...mapState([
@@ -31,6 +31,12 @@ export default {
   color: #FFF;
   display: grid;
   height: 100vh;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 @media screen and (min-width: 768px) {
     #app {
