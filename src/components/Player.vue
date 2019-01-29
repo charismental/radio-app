@@ -99,11 +99,15 @@ export default {
 }
 @media screen and (min-width: 768px) {
   .player {
-    height: 640px;
+    max-height: 640px;
   }
-  /* .player1 {
-    height: 181px;
-  } */
+}
+@media only screen and (max-width: 359px) and (min-width: 320px) {
+  .more-info {
+    margin-top: 5px;
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 .top-bar {
   grid-area: a;
