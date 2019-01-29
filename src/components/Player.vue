@@ -48,9 +48,11 @@ export default {
   },
   methods: {
     ...mapMutations([
-      'toggleMoreInfoModal'
+      'toggleMoreInfoModal',
+      'newInterval'
     ]),
     ...mapActions([
+      'getSongInfo',
       'playPause',
       'pause'
     ])
@@ -60,8 +62,13 @@ export default {
       'songInfo',
       'isPlaying',
       'moreInfoModalDisplay',
-      'expandedPlayer'
+      'expandedPlayer',
+      'refreshInterval'
     ])
+  },
+  created () {
+    this.getSongInfo()
+    this.newInterval(setInterval(this.getSongInfo, this.refreshInterval))
   }
 }
 </script>
@@ -80,25 +87,23 @@ export default {
                       "j j j j";
 }
 .player1 {
-  position: relative;
+  position: fixed;
   display: grid;
-  height: 100vh;
+  max-height: 181px;
   grid-template-columns: 1.5fr 3.5fr 1fr;
-  grid-template-rows: 1fr 2fr 2fr 1fr 30fr;
+  grid-template-rows: 1fr 2fr 2fr 1fr;
   grid-template-areas:"a a a"
                       "d e h"
                       "g f i"
-                      "j j j"
-                      "k k k";
+                      "j j j";
 }
 @media screen and (min-width: 768px) {
-    .player, .player1 {
-    border-radius: 10px;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-    margin: 0 auto;
-    width: 360px;
+  .player {
     height: 640px;
   }
+  /* .player1 {
+    height: 181px;
+  } */
 }
 .top-bar {
   grid-area: a;
