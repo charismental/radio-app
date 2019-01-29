@@ -30,28 +30,22 @@ export default {
   padding-left: 15px;
   padding-top: 10px;
 }
-.title {
+.current-meta span {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  display: block;
+}
+.title {
   font-weight: 300;
   font-size: 18px;
-  display: block;
 }
 .artist {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
   font-weight: 100;
   font-size: 14px;
-  display: block;
 }
 .album {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
   font-weight: 100;
   font-size: 14px;
-  display: block;
 }
 </style>
