@@ -1,17 +1,24 @@
 <template>
-    <div class="feedback">
+    <div class="feedback" :class="[expandedPlayer ? 'expanded-feedback' : 'minimized-feedback']">
       <i class="material-icons" title="Thumbs Down" @click="thumbsDown" :class="[approval === 'thumbsDown' ? 'active' : '']">thumb_down_alt</i>
       <i class="material-icons" title="Thumbs Up" @click="thumbsUp" :class="[approval === 'thumbsUp' ? 'active' : '']">thumb_up_alt</i>
     </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'Feedback',
   data () {
     return {
       approval: ''
     }
+  },
+  computed: {
+    ...mapState([
+      'expandedPlayer'
+    ])
   },
   methods: {
     thumbsUp () {
@@ -33,9 +40,15 @@ export default {
 </script>
 
 <style>
-.feedback {
+.expanded-feedback {
     padding-left: 10px;
     padding-right: 10px;
+}
+.minimized-feedback {
+    padding-left: 35px;
+    padding-right: 35px;
+}
+.feedback {
     padding-top: 10px;
     display: flex;
     justify-content: space-between;
