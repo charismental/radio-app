@@ -18,10 +18,7 @@
       <span class="artist">{{ songInfo.artist }}</span>
       <span class="album">{{ songInfo.album }}</span>
     </div>
-    <div class="feedback">
-      <i class="material-icons md-36">thumb_down_alt</i>
-      <i class="material-icons md-36">thumb_up_alt</i>
-    </div>
+      <feedback />
     <div class="timer">
         <timer />
     </div>
@@ -53,6 +50,7 @@
 <script>
 import Timer from './Timer.vue'
 import Volume from './Volume.vue'
+import Feedback from './Feedback.vue'
 import {
   mapState,
   mapActions,
@@ -61,6 +59,7 @@ import {
 export default {
   name: 'Player',
   components: {
+    Feedback,
     Timer,
     Volume
   },
@@ -161,7 +160,7 @@ export default {
   display: grid;
   height: 100vh;
   grid-template-columns: 1fr 1fr 2fr 2fr;
-  grid-template-rows: 1fr 7fr 1fr 2fr 1fr;
+  grid-template-rows: 1fr 6.5fr 1.5fr 2fr 1fr;
   grid-template-areas:"a b b c"
                       "d d d d"
                       "e e e f"
@@ -216,6 +215,7 @@ export default {
 .current-meta {
   grid-area: e;
   padding-left: 15px;
+  padding-top: 10px;
 }
 .current-meta .title {
   white-space: nowrap;
@@ -241,12 +241,8 @@ export default {
   font-size: 14px;
   display: block;
 }
-.feedback {
+feedback {
   grid-area: f;
-  padding-left: 10px;
-  padding-right: 10px;
-  display: flex;
-  justify-content: space-between;
 }
 .timer {
   grid-area: g;
