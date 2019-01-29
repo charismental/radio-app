@@ -68,14 +68,7 @@ export default {
 
 <style scoped>
 .player {
-  transition: 1s;
   position: relative;
-  background: url(../assets/background.png) no-repeat;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  color: #FFF;
   display: grid;
   height: 100vh;
   grid-template-columns: 1fr 1fr 2fr 2fr;
@@ -87,13 +80,7 @@ export default {
                       "j j j j";
 }
 .player1 {
-  background: url(../assets/background.png) no-repeat;
   position: relative;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  color: #FFF;
   display: grid;
   height: 100vh;
   grid-template-columns: 1.5fr 3.5fr 1fr;
@@ -103,6 +90,15 @@ export default {
                       "g f i"
                       "j j j"
                       "k k k";
+}
+@media screen and (min-width: 768px) {
+    .player, .player1 {
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    margin: 0 auto;
+    width: 360px;
+    height: 640px;
+  }
 }
 .top-bar {
   grid-area: a;
@@ -130,15 +126,6 @@ export default {
 }
 .volume-slider {
   grid-area: j;
-}
-@media screen and (min-width: 768px) {
-    .player, .player1 {
-    border-radius: 10px;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-    margin: 0 auto;
-    width: 360px;
-    height: 640px;
-  }
 }
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }
