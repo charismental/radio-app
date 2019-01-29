@@ -23,6 +23,7 @@ export default {
 </script>
 <style>
 #app {
+  position: relative;
   background: url(./assets/background.png) no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -44,7 +45,7 @@ export default {
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
     margin: 0 auto;
     width: 360px;
-    height: 640px;
+    max-height: 640px;
   }
 }
 </style>
