@@ -24,7 +24,7 @@ export default {
 .minimized-meta {
   padding-top: 5px;
   padding-left: 0;
-  max-width: 200px;
+  width: 210px;
 }
 .expanded-meta {
   padding-left: 15px;
@@ -50,7 +50,7 @@ export default {
 }
 @media only screen and (max-width: 359px) and (min-width: 320px) {
   .minimized-meta {
-    max-width: 175px;
+    width: 187px;
   }
 }
 </style>
