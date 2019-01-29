@@ -1,18 +1,12 @@
 <template>
-  <div id="player">
-    <div class="arrow-icon">
-      <i class="material-icons md-36">expand_more</i>
-    </div>
-    <div class="title-bar"><span>Radiomv.org</span></div>
-    <div class="nav-arrows">
-      <i class="material-icons md-36">navigate_before</i>
-      <i class="material-icons md-36">navigate_next</i>
-    </div>
-    <div class="current-album-art">
+  <div :class="[expandedPlayer ? 'player' : 'player1']">
+    <top-bar />
+    <!-- <div class="current-album-art">
       <a href="#" target="_blank">
           <img :src="itemImg(songInfo)" onerror="this.src='https://radiomv.org/samHTMweb/customMissing.jpg'" :alt="songInfo.title" />
       </a>
-    </div>
+    </div> -->
+    <current-album-art :song="songInfo" />
     <div class="current-meta">
       <span class="title">{{ songInfo.title }}</span>
       <span class="artist">{{ songInfo.artist }}</span>
@@ -23,14 +17,14 @@
         <timer />
     </div>
     <div class="play-container" @click="playPause" @keyup.space="playPause">
-      <i class="material-icons md-96" v-if="!isPlaying">play_circle_outline</i>
-      <i class="material-icons md-96" v-else>pause_circle_outline</i>
+      <i class="material-icons" :class="[expandedPlayer ? 'md-96' : 'md-36']" v-if="!isPlaying">play_circle_outline</i>
+      <i class="material-icons" :class="[expandedPlayer ? 'md-96' : 'md-36']" v-else>pause_circle_outline</i>
         <audio id="audio" :src="currentStream">
         Your browser does not support the audio element.
         </audio>
     </div>
     <div class="more-info" @click="toggleMoreInfoModal">
-      <i class="material-icons md-84">more_horiz</i>
+      <i class="material-icons" :class="[expandedPlayer ? 'md-84' : 'md-36']">more_horiz</i>
     </div>
     <div class="volume-slider">
       <volume />
@@ -51,6 +45,9 @@
 import Timer from './Timer.vue'
 import Volume from './Volume.vue'
 import Feedback from './Feedback.vue'
+import TopBar from './TopBar.vue'
+import CurrentAlbumArt from './CurrentAlbumArt.vue'
+
 import {
   mapState,
   mapActions,
@@ -61,7 +58,9 @@ export default {
   components: {
     Feedback,
     Timer,
-    Volume
+    Volume,
+    TopBar,
+    CurrentAlbumArt
   },
   data () {
     return {
@@ -76,21 +75,14 @@ export default {
     ...mapActions([
       'playPause',
       'pause'
-    ]),
-    itemImg (item) {
-      const url = 'https://radiomv.org/samHTMweb/'
-      if (item.picture) {
-        return url + item.picture
-      } else {
-        return url + 'customMissing.jpg'
-      }
-    }
+    ])
   },
   computed: {
     ...mapState([
       'songInfo',
       'isPlaying',
-      'moreInfoModalDisplay'
+      'moreInfoModalDisplay',
+      'expandedPlayer'
     ])
   }
 }
@@ -142,14 +134,7 @@ export default {
   height: 100%;
   background: rgba(0, 0, 0, 0.8);
 }
-.material-icons.md-18 { font-size: 18px; }
-.material-icons.md-24 { font-size: 24px; }
-.material-icons.md-36 { font-size: 36px; }
-.material-icons.md-48 { font-size: 48px; }
-.material-icons.md-84 { font-size: 84px; }
-.material-icons.md-96 { font-size: 96px; }
-.material-icons { cursor: pointer; }
-#player {
+.player {
   position: relative;
   background: url(../assets/background.png) no-repeat;
   -webkit-background-size: cover;
@@ -161,13 +146,13 @@ export default {
   height: 100vh;
   grid-template-columns: 1fr 1fr 2fr 2fr;
   grid-template-rows: 1fr 6.5fr 1.5fr 2fr 1fr;
-  grid-template-areas:"a b b c"
+  grid-template-areas:"a a a a"
                       "d d d d"
                       "e e e f"
                       "g g h i"
                       "j j j j";
 }
-#player1 {
+.player1 {
   background: url(../assets/background.png) no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -176,41 +161,19 @@ export default {
   color: #FFF;
   display: grid;
   height: 100vh;
-  grid-template-columns: 2fr 2fr 2fr;
-  grid-template-rows: 1fr 8fr 2fr 1fr;
-  grid-template-areas:"a b c"
+  grid-template-columns: 1.5fr 3.5fr 1fr;
+  grid-template-rows: 1fr 2fr 2fr 1fr 30fr;
+  grid-template-areas:"a a a"
                       "d e h"
-                      "d f i"
-                      "j j j";
+                      "g f i"
+                      "j j j"
+                      "k k k";
 }
-.arrow-icon {
+.top-bar {
   grid-area: a;
-  padding: 2px;
-}
-.title-bar {
-  padding-top: 8px;
-  grid-area: b;
-  font-weight: 250;
-  font-size: 18px;
-}
-.nav-arrows {
-  grid-area: c;
-  padding-top: 2px;
-  margin-left:auto;
-  margin-right:0;
 }
 .current-album-art {
   grid-area: d;
-  padding-top: 20px;
-}
-.current-album-art img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  height: 300px;
-  max-width: 300px;
-  border: 2px solid white;
-  border-radius: 15px;
 }
 .current-meta {
   grid-area: e;
@@ -246,7 +209,6 @@ feedback {
 }
 .timer {
   grid-area: g;
-  padding-top: 5px;
 }
 .play-container {
   grid-area: h;
@@ -263,7 +225,7 @@ feedback {
   padding-right: 15px;
 }
 @media screen and (min-width: 768px) {
-    #player {
+    .player, .player1 {
     border-radius: 10px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
     margin: 0 auto;
@@ -276,4 +238,11 @@ feedback {
     width: 360px;
   }
 }
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+.material-icons.md-84 { font-size: 84px; }
+.material-icons.md-96 { font-size: 96px; }
+.material-icons { cursor: pointer; }
 </style>
