@@ -24,9 +24,13 @@ export default new Vuex.Store({
     history: false,
     isPlaying: false,
     loading: true,
-    moreInfoModalDisplay: false
+    moreInfoModalDisplay: false,
+    expandedPlayer: true
   },
   mutations: {
+    toggleExpandedPlayer (state) {
+      state.expandedPlayer = !state.expandedPlayer
+    },
     toggleMoreInfoModal (state) {
       state.moreInfoModalDisplay = !state.moreInfoModalDisplay
     },
