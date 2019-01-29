@@ -43,6 +43,15 @@ export default {
   font-size: 36px;
   transform: scale(.7, 1);
   display: inline-block;
-  margin-left: 5px;
+  margin-left: 4px;
+}
+@media only screen and (max-width: 359px) and (min-width: 320px) {
+  .minimized-timer span {
+    margin-left: -6px;
+  }
+  .expanded-timer span {
+    margin-top: 15px;
+    font-size: 58px;
+  }
 }
 </style>
