@@ -1,5 +1,7 @@
 <template>
-    <div :class="[expandedPlayer ? 'timer' : 'minimized-timer']"><span>{{ time || "00:00" }}</span></div>
+  <div class="timer">
+    <div :class="[expandedPlayer ? 'expanded-timer' : 'minimized-timer']"><span>{{ time || "00:00" }}</span></div>
+  </div>
 </template>
 
 <script>
@@ -30,7 +32,7 @@ export default {
 </script>
 
 <style>
-.timer span {
+.expanded-timer span {
   font-size: 66px;
   transform: scale(.7, 1);
   display: inline-block;
