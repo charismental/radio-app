@@ -1,6 +1,6 @@
 <template>
     <div class="current-album-art" :class="[expandedPlayer ? 'expanded' : 'minimized']">
-      <a href="#" target="_blank">
+      <a :href="song.buycd" target="_blank">
           <img :src="itemImg(song)" onerror="this.src='https://radiomv.org/samHTMweb/customMissing.jpg'" :alt="song.title" />
       </a>
     </div>
@@ -42,6 +42,9 @@ export default {
 .expanded img {
   height: 300px;
   max-width: 300px;
+}
+.expanded {
+  padding-top: 10px;
 }
 .minimized img {
   height: 60px;
