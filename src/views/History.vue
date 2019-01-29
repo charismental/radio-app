@@ -63,16 +63,15 @@ export default {
 
 <style>
 .history {
-  /* Why in the world do I need to do this??? */
-  /* margin-top: -235px; */
+  position: absolute;
   display: flex;
   text-align: center;
-  position: fixed;
   top: 181px;
   width: 360px;
 }
 .history-header {
-  width: 100%;
+  width: 360px;
+  position: fixed;
 }
 .history-title {
   font-weight: 500;
@@ -85,20 +84,20 @@ export default {
 }
 .history-body {
   overflow: auto;
-  max-height: 375px;
+  max-height: 58.5vh;
   text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: center;
   color: white;
   cursor: pointer;
+  width: 345px;
 }
 .history-body a {
   text-decoration: none;
 }
 .history-item {
   height: 50px;
-  width: 330px;
 }
 .history-item:first-child:hover {
   transform: scale(1.25) translate(30px,5px);
@@ -139,6 +138,19 @@ export default {
   font-weight: 100;
   font-size: 12px;
   color: #fff;
-  display: block; }
-
+  display: block;
+}
+@media screen and (min-width: 768px) {
+  .history-body {
+    max-height: 375px;
+  }
+}
+@media only screen and (max-width: 359px) and (min-width: 320px) {
+  .history-header {
+    width: 320px;
+  }
+  .history-body {
+    width: 305px;
+  }
+}
 </style>
