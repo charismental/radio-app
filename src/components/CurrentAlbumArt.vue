@@ -50,4 +50,16 @@ export default {
   height: 60px;
   max-width: 60px;
 }
+@media only screen and (max-width: 359px) and (min-width: 320px) {
+  .minimized img {
+    height: 50px;
+    max-width: 50px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .expanded img {
+    height: 280px;
+    max-width: 280px;
+  }
+}
 </style>
