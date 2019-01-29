@@ -48,4 +48,9 @@ export default {
   font-weight: 100;
   font-size: 14px;
 }
+@media only screen and (max-width: 359px) and (min-width: 320px) {
+  .minimized-meta {
+    max-width: 175px;
+  }
+}
 </style>

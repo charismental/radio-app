@@ -20,7 +20,7 @@
   width: 360px;
 }
 .about-header {
-  width: 360px;
+  width: 330px;
   position: fixed;
 }
 .about-title {
