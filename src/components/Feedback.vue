@@ -20,7 +20,6 @@ export default {
       } else {
         this.approval = 'thumbsUp'
       }
-      alert(`thank you for voting`)
     },
     thumbsDown () {
       if (this.approval === 'thumbsDown') {
@@ -28,7 +27,6 @@ export default {
       } else {
         this.approval = 'thumbsDown'
       }
-      alert(`thank you for voting`)
     }
   }
 }
