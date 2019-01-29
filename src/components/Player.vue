@@ -1,13 +1,10 @@
 <template>
   <div :class="[expandedPlayer ? 'player' : 'player1']">
     <top-bar />
-    <!-- <div class="current-album-art">
-      <a href="#" target="_blank">
-          <img :src="itemImg(songInfo)" onerror="this.src='https://radiomv.org/samHTMweb/customMissing.jpg'" :alt="songInfo.title" />
-      </a>
-    </div> -->
-    <current-album-art :song="songInfo" />
-    <div class="current-meta">
+    <transition name="fade">
+      <current-album-art :song="songInfo" />
+    </transition>
+    <div class="current-meta" :class="[expandedPlayer ? 'expanded-meta' : 'minimized-meta']">
       <span class="title">{{ songInfo.title }}</span>
       <span class="artist">{{ songInfo.artist }}</span>
       <span class="album">{{ songInfo.album }}</span>
@@ -135,6 +132,7 @@ export default {
   background: rgba(0, 0, 0, 0.8);
 }
 .player {
+  transition: 1s;
   position: relative;
   background: url(../assets/background.png) no-repeat;
   -webkit-background-size: cover;
@@ -154,6 +152,7 @@ export default {
 }
 .player1 {
   background: url(../assets/background.png) no-repeat;
+  position: relative;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -177,6 +176,12 @@ export default {
 }
 .current-meta {
   grid-area: e;
+}
+.minimized-meta {
+  padding-top: 5px;
+  padding-left: 0;
+}
+.expanded-meta {
   padding-left: 15px;
   padding-top: 10px;
 }
