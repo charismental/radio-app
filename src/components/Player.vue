@@ -129,8 +129,7 @@ export default {
 }
 .more-info {
   grid-area: i;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 7px;
 }
 .volume-slider {
   grid-area: j;
