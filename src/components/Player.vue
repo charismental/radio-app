@@ -1,8 +1,8 @@
 <template>
   <div :class="[expandedPlayer ? 'player' : 'player1']">
     <top-bar />
-    <current-album-art :song="songInfo" />
-    <current-meta :song="songInfo" />
+    <current-album-art />
+    <current-meta />
     <feedback />
     <timer />
     <div class="play-container" @click="playPause" @keyup.space="playPause">
@@ -59,7 +59,6 @@ export default {
   },
   computed: {
     ...mapState([
-      'songInfo',
       'isPlaying',
       'moreInfoModalDisplay',
       'expandedPlayer',
