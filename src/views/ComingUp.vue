@@ -90,13 +90,14 @@ export default {
   justify-content: center;
   color: white;
   cursor: pointer;
-  width: calc(100vw - 20px);
+  width: inherit;
 }
 .queue-body a {
   text-decoration: none;
 }
 .queue-item {
   height: 50px;
+  width: calc(100vw - 20px)
 }
 .queue-item:first-child:hover {
   transform: scale(1.25) translate(30px,5px);
@@ -142,14 +143,21 @@ export default {
 @media screen and (min-width: 768px) {
   .queue-body {
     max-height: 375px;
+    width: 360px;
+  }
+  .queue-header {
+    width: 360px;
+  }
+  .queue-item {
+    width: 340px;
   }
 }
-@media only screen and (max-width: 359px) and (min-width: 320px) {
+/* @media only screen and (max-width: 359px) and (min-width: 320px) {
   .queue-header {
     width: 320px;
   }
   .queue-body {
     width: 290px;
   }
-}
+} */
 </style>

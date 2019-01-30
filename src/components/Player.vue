@@ -101,6 +101,9 @@ export default {
   .player {
     max-height: 640px;
   }
+  .player1 {
+    max-width: 360px;
+  }
 }
 @media only screen and (max-width: 359px) and (min-width: 320px) {
   .more-info {

@@ -17,10 +17,10 @@
   display: flex;
   text-align: center;
   top: 181px;
-  width: 360px;
+  width: 100vw;
 }
 .about-header {
-  width: 330px;
+  width: inherit;
   position: fixed;
 }
 .about-title {
@@ -34,19 +34,19 @@
 }
 .about-body {
   overflow: auto;
-  max-height: 58.5vh;
+  max-height: calc(100vh - 250px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   color: white;
   padding-left: 10px;
 }
-@media only screen and (max-width: 359px) and (min-width: 320px) {
+/* @media only screen and (max-width: 359px) and (min-width: 320px) {
   .about-header {
     width: 320px;
   }
   .about-body {
     width: 290px;
   }
-}
+} */
 </style>
