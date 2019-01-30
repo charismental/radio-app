@@ -6,8 +6,8 @@
         </div>
         <div class="title-bar"><span>Radiomv.org</span></div>
         <div class="nav-arrows">
-          <router-link to="/"><i class="material-icons md-36">navigate_before</i></router-link>
-          <router-link to="/about"><i class="material-icons md-36">navigate_next</i></router-link>
+          <router-link to="/" @click.native="minimizePlayer"><i class="material-icons md-36">navigate_before</i></router-link>
+          <router-link to="/queue" @click.native="minimizePlayer"><i class="material-icons md-36">navigate_next</i></router-link>
         </div>
     </div>
 </template>
@@ -24,7 +24,8 @@ export default {
   },
   methods: {
     ...mapMutations([
-      'toggleExpandedPlayer'
+      'toggleExpandedPlayer',
+      'minimizePlayer'
     ])
   }
 }
