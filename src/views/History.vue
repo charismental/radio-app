@@ -67,10 +67,10 @@ export default {
   display: flex;
   text-align: center;
   top: 181px;
-  width: 360px;
+  width: 100vw;
 }
 .history-header {
-  width: 360px;
+  width: inherit;
   position: fixed;
 }
 .history-title {
@@ -84,14 +84,15 @@ export default {
 }
 .history-body {
   overflow: auto;
-  max-height: 58.5vh;
+  /* 58.5vh */
+  max-height: calc(100vh - 250px);
   text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: center;
   color: white;
   cursor: pointer;
-  width: 345px;
+  width: calc(100vw - 20px);
 }
 .history-body a {
   text-decoration: none;
@@ -145,12 +146,12 @@ export default {
     max-height: 375px;
   }
 }
-@media only screen and (max-width: 359px) and (min-width: 320px) {
+/* @media only screen and (max-width: 359px) and (min-width: 320px) {
   .history-header {
     width: 320px;
   }
   .history-body {
     width: 305px;
   }
-}
+} */
 </style>

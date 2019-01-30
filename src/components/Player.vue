@@ -88,6 +88,7 @@ export default {
 .player1 {
   position: fixed;
   display: grid;
+  width: 100vw;
   max-height: 181px;
   grid-template-columns: 1.5fr 3.5fr 1fr;
   grid-template-rows: 1fr 2fr 2fr 1fr;

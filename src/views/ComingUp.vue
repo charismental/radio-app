@@ -66,10 +66,10 @@ export default {
   display: flex;
   text-align: center;
   top: 181px;
-  width: 360px;
+  width: 100vw;
 }
 .queue-header {
-  width: 330px;
+  width: inherit;
   position: fixed;
 }
 .queue-title {
@@ -83,14 +83,14 @@ export default {
 }
 .queue-body {
   overflow: auto;
-  max-height: 58.5vh;
+  max-height: calc(100vh - 250px);
   text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: center;
   color: white;
   cursor: pointer;
-  width: 345px;
+  width: calc(100vw - 20px);
 }
 .queue-body a {
   text-decoration: none;
