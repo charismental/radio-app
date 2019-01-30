@@ -20,6 +20,7 @@ export default new Vuex.Store({
     // meta objects
     songInfo: '',
     songHistory: '',
+    songQueue: '',
     // toggles
     history: false,
     isPlaying: false,
@@ -30,6 +31,9 @@ export default new Vuex.Store({
   mutations: {
     toggleExpandedPlayer (state) {
       state.expandedPlayer = !state.expandedPlayer
+    },
+    minimizePlayer (state) {
+      state.expandedPlayer = false
     },
     toggleMoreInfoModal (state) {
       state.moreInfoModalDisplay = !state.moreInfoModalDisplay
@@ -57,6 +61,7 @@ export default new Vuex.Store({
     setSongInfo (state, payload) {
       state.songInfo = payload.song_info
       state.songHistory = payload.song_history
+      state.songQueue = payload.song_queue
     },
     historyToggle (state) {
       state.history = !state.history
