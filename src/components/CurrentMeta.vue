@@ -1,8 +1,8 @@
 <template>
     <div class="current-meta" :class="[expandedPlayer ? 'expanded-meta' : 'minimized-meta']">
-      <span class="title">{{ song.title }}</span>
-      <span class="artist">{{ song.artist }}</span>
-      <span class="album">{{ song.album }}</span>
+      <span class="title">{{ songInfo.title }}</span>
+      <span class="artist">{{ songInfo.artist }}</span>
+      <span class="album">{{ songInfo.album }}</span>
     </div>
 </template>
 
@@ -11,10 +11,10 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'Current-Meta',
-  props: [ 'song' ],
   computed: {
     ...mapState([
-      'expandedPlayer'
+      'expandedPlayer',
+      'songInfo'
     ])
   }
 }

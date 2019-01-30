@@ -1,7 +1,7 @@
 <template>
     <div class="current-album-art" :class="[expandedPlayer ? 'expanded' : 'minimized']">
-      <a :href="song.buycd" target="_blank">
-          <img :src="itemImg(song)" onerror="this.src='https://radiomv.org/samHTMweb/customMissing.jpg'" :alt="song.title" />
+      <a :href="songInfo.buycd" target="_blank">
+          <img :src="itemImg(songInfo)" onerror="this.src='https://radiomv.org/samHTMweb/customMissing.jpg'" :alt="songInfo.title" />
       </a>
     </div>
 </template>
@@ -10,12 +10,11 @@
 import { mapState } from 'vuex'
 
 export default {
-  props: [
-    'song'
-  ],
   computed: {
     ...mapState([
-      'expandedPlayer'
+      'expandedPlayer',
+      'songInfo',
+      'loading'
     ])
   },
   methods: {
@@ -23,6 +22,8 @@ export default {
       const url = 'https://radiomv.org/samHTMweb/'
       if (item.picture) {
         return url + item.picture
+      } else if (this.loading) {
+        return url + 'loading.gif'
       } else {
         return url + 'customMissing.jpg'
       }
