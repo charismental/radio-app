@@ -17,7 +17,8 @@ export default {
   },
   computed: {
     ...mapState([
-      'expandedPlayer'
+      'expandedPlayer',
+      'songInfo'
     ])
   },
   methods: {
@@ -33,6 +34,13 @@ export default {
         this.approval = ''
       } else {
         this.approval = 'thumbsDown'
+      }
+    }
+  },
+  watch: {
+    songInfo () {
+      if (this.approval) {
+        this.approval = ''
       }
     }
   }
