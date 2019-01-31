@@ -68,6 +68,11 @@ export default {
   created () {
     this.getSongInfo()
     this.newInterval(setInterval(this.getSongInfo, this.refreshInterval))
+    window.addEventListener('keydown', (e) => {
+      if (e.key === ' ') {
+        this.playPause()
+      }
+    })
   }
 }
 </script>
@@ -133,7 +138,7 @@ export default {
 }
 .more-info {
   grid-area: i;
-  margin-left: 7px;
+  margin: 0 auto;
 }
 .volume-slider {
   grid-area: j;
