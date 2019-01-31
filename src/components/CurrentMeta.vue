@@ -1,8 +1,14 @@
 <template>
     <div class="current-meta" :class="[expandedPlayer ? 'expanded-meta' : 'minimized-meta']">
-      <span class="title">{{ songInfo.title }}</span>
-      <span class="artist">{{ songInfo.artist }}</span>
-      <span class="album">{{ songInfo.album }}</span>
+      <div class="marquee-container">
+        <span class="title" :class="[marqueeTrigger(songInfo.title, 24) ? 'marquee' : '']">{{ songInfo.title }}</span>
+      </div>
+      <div class="marquee-container">
+        <span class="artist" :class="[marqueeTrigger(songInfo.artist, 36) ? 'marquee' : '']">{{ songInfo.artist }}</span>
+      </div>
+      <div class="marquee-container">
+        <span class="album" :class="[marqueeTrigger(songInfo.album, 36) ? 'marquee' : '']">{{ songInfo.album }}</span>
+      </div>
     </div>
 </template>
 
@@ -16,6 +22,11 @@ export default {
       'expandedPlayer',
       'songInfo'
     ])
+  },
+  methods: {
+    marqueeTrigger (el, val) {
+      return !!(el && el.length > val)
+    }
   }
 }
 </script>
@@ -31,9 +42,9 @@ export default {
   padding-top: 10px;
 }
 .current-meta span {
-  white-space: nowrap;
+  /* white-space: nowrap;
   text-overflow: ellipsis;
-  overflow: hidden;
+  overflow: hidden; */
   display: block;
 }
 .title {
@@ -52,5 +63,25 @@ export default {
   .minimized-meta {
     width: 187px;
   }
+}
+@keyframes marquee {
+  0% { transform: translateX(100%) }
+  100% { transform: translateX(-130%) }
+}
+@-webkit-keyframes marquee {
+  0% { transform: translateX(100%) }
+  100% { transform: translateX(-130%) }
+}
+.marquee-container {
+  overflow: hidden;
+}
+.marquee {
+  white-space: nowrap;
+  animation: marquee 8s linear infinite;
+  -webkit-animation: marquee 8s linear infinite;
+}
+.marquee:hover {
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
 }
 </style>
