@@ -47,7 +47,7 @@ export default {
 }
 @media only screen and (max-width: 359px) and (min-width: 320px) {
   .minimized-timer span {
-    margin-left: -6px;
+    margin-left: -2px;
   }
   .expanded-timer span {
     margin-top: 15px;
