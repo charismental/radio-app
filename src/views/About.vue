@@ -40,6 +40,7 @@
   justify-content: center;
   color: white;
   padding-left: 10px;
+  padding-right: 10px;
 }
 /* @media only screen and (max-width: 359px) and (min-width: 320px) {
   .about-header {
