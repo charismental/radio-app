@@ -78,13 +78,16 @@ export default new Vuex.Store({
   },
   actions: {
     getSongInfo ({ state, commit }) {
+      const temp = state.songInfo
       axios
         .get('https://radiomv.org/samHTMweb/info.json')
         .then(res => res.data)
         .then(payload => {
-          commit('setSongInfo', payload)
-          if (state.loading === true) {
-            commit('setLoading', false)
+          if (!temp.title || temp.title !== payload.song_info.title) {
+            commit('setSongInfo', payload)
+            if (state.loading === true) {
+              commit('setLoading', false)
+            }
           }
         })
     },
