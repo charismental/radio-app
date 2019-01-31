@@ -41,8 +41,10 @@ export default {
   border-radius: 15px;
 }
 .expanded img {
-  height: 300px;
-  max-width: 300px;
+  /* height: 300px;
+  max-width: 300px; */
+  height: calc(100vw - 40px);
+  max-width: calc(100vw - 40px);
 }
 .expanded {
   padding-top: 10px;
@@ -50,6 +52,12 @@ export default {
 .minimized img {
   height: 60px;
   max-width: 60px;
+}
+@media only screen and (min-width: 768px) {
+  .expanded img {
+    height: 320px;
+    max-width: 320px;
+  }
 }
 @media only screen and (max-width: 359px) and (min-width: 320px) {
   .minimized img {
