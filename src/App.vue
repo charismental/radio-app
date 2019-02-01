@@ -2,17 +2,20 @@
   <div id="app">
     <player />
     <router-view v-if="!expandedPlayer" />
+    <more-info-modal />
   </div>
 </template>
 <script>
 // @ is an alias to /src
 import Player from '@/components/Player.vue'
+import MoreInfoModal from '@/components/MoreInfoModal.vue'
 import { mapState } from 'vuex'
 
 export default {
   name: 'home',
   components: {
-    Player
+    Player,
+    MoreInfoModal
   },
   computed: {
     ...mapState([
