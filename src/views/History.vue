@@ -8,12 +8,10 @@
         <simplebar id="history-container" data-simplebar-auto-hide="true">
           <div class="history-item" v-for="(song, i) in songHistory.slice(0,29)" :key="i">
             <div class="history-album">
-              <a :href="itemUrl(song)" target="_blank"><img :src="itemImg(song)" onerror="this.src='https://radiomv.org/samHTMweb/customMissing.jpg'" alt="song.title" class="history-img"></a>
+              <img :src="itemImg(song)" @click="setToggleModal(song)" onerror="this.src='https://radiomv.org/samHTMweb/customMissing.jpg'" alt="song.title" class="history-img">
             </div>
             <div class="history-meta">
-              <a :href="itemUrl(song)" target="_blank">
-                <span class="song-name">{{ song.title }}</span>
-              </a>
+              <span @click="setToggleModal(song)" class="song-name">{{ song.title }}</span>
               <span class="artist">{{ song.artist }}</span>
               <hr>
             </div>
@@ -25,7 +23,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import simplebar from 'simplebar-vue'
 import 'simplebar/dist/simplebar.min.css'
 // @ is an alias to /src
@@ -42,6 +40,9 @@ export default {
     ])
   },
   methods: {
+    ...mapActions([
+      'setToggleModal'
+    ]),
     itemImg (item) {
       const url = 'https://radiomv.org/samHTMweb/'
       if (item.picture) {
