@@ -21,6 +21,27 @@ export default new Vuex.Store({
     songInfo: '',
     songHistory: '',
     songQueue: '',
+    modalObject: '',
+    trailers: [
+      'Curtis Dougherty',
+      'David Pawson',
+      'Derek Prince',
+      'Ern Baxter',
+      'Jamie Buckingham',
+      'John Casteel',
+      'Paul Washer',
+      'Scourby'
+    ],
+    // trailers: [
+    //   { title: 'Curtis Dougherty' },
+    //   { title: 'David Pawson' },
+    //   { title: 'Derek Prince' },
+    //   { title: 'Ern Baxter' },
+    //   { title: 'Jamie Buckingham' },
+    //   { title: 'John Casteel' },
+    //   { title: 'Paul Washer' },
+    //   { title: 'Scourby' }
+    // ],
     // toggles
     history: false,
     isPlaying: false,
@@ -29,6 +50,9 @@ export default new Vuex.Store({
     expandedPlayer: true
   },
   mutations: {
+    setModalObject (state, payload) {
+      state.modalObject = payload
+    },
     toggleExpandedPlayer (state) {
       state.expandedPlayer = !state.expandedPlayer
     },
@@ -84,12 +108,18 @@ export default new Vuex.Store({
         .then(res => res.data)
         .then(payload => {
           if (!temp.title || temp.title !== payload.song_info.title) {
-            commit('setSongInfo', payload)
-            if (state.loading === true) {
-              commit('setLoading', false)
+            if (state.trailers.indexOf(payload.song_info.title) === -1) {
+              commit('setSongInfo', payload)
+              if (state.loading === true) {
+                commit('setLoading', false)
+              }
             }
           }
         })
+    },
+    setToggleModal ({ commit }, payload) {
+      commit('setModalObject', payload)
+      commit('toggleMoreInfoModal')
     },
     playPause ({ commit, dispatch }) {
       // eslint-disable-next-line
