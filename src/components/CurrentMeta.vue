@@ -4,10 +4,10 @@
         <span class="title" :class="[marqueeTrigger(songInfo.title, 24) ? 'marquee' : '']">{{ songInfo.title }}</span>
       </div>
       <div class="marquee-container">
-        <span class="artist" :class="[marqueeTrigger(songInfo.artist, 36) ? 'marquee' : '']">{{ songInfo.artist }}</span>
+        <span class="artist" :class="[marqueeTrigger(songInfo.artist, 33) ? 'marquee' : '']">{{ songInfo.artist }}</span>
       </div>
       <div class="marquee-container">
-        <span class="album" :class="[marqueeTrigger(songInfo.album, 36) ? 'marquee' : '']">{{ songInfo.album }}</span>
+        <span class="album" :class="[marqueeTrigger(songInfo.album, 33) ? 'marquee' : '']">{{ songInfo.album }}</span>
       </div>
     </div>
 </template>
