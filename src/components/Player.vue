@@ -12,11 +12,10 @@
         Your browser does not support the audio element.
         </audio>
     </div>
-    <div class="more-info" @click="toggleMoreInfoModal">
-      <i class="material-icons" :class="[expandedPlayer ? 'md-84' : 'md-36']">more_horiz</i>
+    <div class="more-info">
+      <i class="material-icons" @click="setToggleModal(songInfo)" :class="[expandedPlayer ? 'md-84' : 'md-36']">more_horiz</i>
     </div>
     <volume />
-    <more-info-modal />
   </div>
 </template>
 
@@ -27,7 +26,6 @@ import Feedback from './Feedback.vue'
 import TopBar from './TopBar.vue'
 import CurrentAlbumArt from './CurrentAlbumArt.vue'
 import CurrentMeta from './CurrentMeta.vue'
-import MoreInfoModal from './MoreInfoModal.vue'
 import { mapState, mapActions, mapMutations } from 'vuex'
 
 export default {
@@ -38,8 +36,7 @@ export default {
     Volume,
     TopBar,
     CurrentAlbumArt,
-    CurrentMeta,
-    MoreInfoModal
+    CurrentMeta
   },
   data () {
     return {
@@ -48,21 +45,21 @@ export default {
   },
   methods: {
     ...mapMutations([
-      'toggleMoreInfoModal',
       'newInterval'
     ]),
     ...mapActions([
       'getSongInfo',
       'playPause',
-      'pause'
+      'pause',
+      'setToggleModal'
     ])
   },
   computed: {
     ...mapState([
       'isPlaying',
-      'moreInfoModalDisplay',
       'expandedPlayer',
-      'refreshInterval'
+      'refreshInterval',
+      'songInfo'
     ])
   },
   created () {
