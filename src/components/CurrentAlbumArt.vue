@@ -1,13 +1,11 @@
 <template>
     <div class="current-album-art" :class="[expandedPlayer ? 'expanded' : 'minimized']">
-      <a :href="songInfo.buycd" target="_blank">
-          <img :src="itemImg(songInfo)" onerror="this.src='https://radiomv.org/samHTMweb/customMissing.jpg'" :alt="songInfo.title" />
-      </a>
+        <img :src="itemImg(songInfo)" @click="setToggleModal(songInfo)" onerror="this.src='https://radiomv.org/samHTMweb/customMissing.jpg'" :alt="songInfo.title" />
     </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   computed: {
@@ -18,6 +16,9 @@ export default {
     ])
   },
   methods: {
+    ...mapActions([
+      'setToggleModal'
+    ]),
     itemImg (item) {
       const url = 'https://radiomv.org/samHTMweb/'
       if (item.picture) {
