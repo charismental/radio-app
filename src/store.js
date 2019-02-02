@@ -22,6 +22,8 @@ export default new Vuex.Store({
     songHistory: '',
     songQueue: '',
     modalObject: '',
+    // requestUrl: 'http://request.audiorealm.com/req/req.html?songID=',
+    // portHost: '&samport=1221&samhost=73.254.166.70',
     trailers: [
       'Curtis Dougherty',
       'David Pawson',
@@ -108,11 +110,14 @@ export default new Vuex.Store({
         .then(res => res.data)
         .then(payload => {
           if (!temp.title || temp.title !== payload.song_info.title) {
-            if (state.trailers.indexOf(payload.song_info.title) === -1) {
-              commit('setSongInfo', payload)
-              if (state.loading === true) {
-                commit('setLoading', false)
-              }
+            // if (state.trailers.indexOf(payload.song_info.title) === -1) {
+            //   commit('setSongInfo', payload)
+            //   if (state.loading === true) {
+            //     commit('setLoading', false)
+            //   }
+            commit('setSongInfo', payload)
+            if (state.loading === true) {
+              commit('setLoading', false)
             }
           }
         })
