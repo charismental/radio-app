@@ -1,3 +1,5 @@
+/* eslint-disable vue/return-in-computed-property */
+/* eslint-disable vue/return-in-computed-property */
 <template>
     <transition-group name="fade">
       <div class="more-info-modal" v-if="moreInfoModalDisplay" key="1">
@@ -9,6 +11,7 @@
             <span class="more-info-album"><i class="material-icons">album</i> Album: {{ modalObject.album }}</span>
             <span class="more-info-duration"><i class="material-icons">av_timer</i>Duration: {{ modalObject.minsec }}</span>
             <span class="more-info-buycd" v-if="modalObject.buycd"><a :href="modalObject.buycd" target="_blank"><i class="material-icons">exit_to_app</i>Buy CD</a></span>
+            <a @click.stop.prevent="openWindow(requestSong)"><span class="more-info-duration"><i class="material-icons">audiotrack</i>Request Song</span></a>
           </div>
         </div>
       </div>
@@ -21,16 +24,31 @@ import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'More-Info-Modal',
+  data () {
+    return {
+      requestUrl: 'http://request.audiorealm.com/req/req.html?songID=',
+      portHost: '&samport=1221&samhost=73.254.166.70'
+    }
+  },
   computed: {
     ...mapState([
       'moreInfoModalDisplay',
       'modalObject'
-    ])
+    ]),
+    // eslint-disable-next-line vue/return-in-computed-property
+    requestSong () {
+      if (this.modalObject.songid) {
+        return this.requestUrl + this.modalObject.songid + this.portHost
+      }
+    }
   },
   methods: {
     ...mapMutations([
       'toggleMoreInfoModal'
-    ])
+    ]),
+    openWindow (link) {
+      window.open(link, 'Request Song', 'width=300,height=300')
+    }
   }
 }
 </script>
