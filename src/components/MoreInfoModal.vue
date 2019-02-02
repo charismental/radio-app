@@ -11,43 +11,62 @@
             <span class="more-info-album"><i class="material-icons">album</i> Album: {{ modalObject.album }}</span>
             <span class="more-info-duration"><i class="material-icons">av_timer</i>Duration: {{ modalObject.minsec }}</span>
             <span class="more-info-buycd" v-if="modalObject.buycd"><a :href="modalObject.buycd" target="_blank"><i class="material-icons">exit_to_app</i>Buy CD</a></span>
-            <a @click.stop.prevent="openWindow(requestSong)"><span class="more-info-duration"><i class="material-icons">audiotrack</i>Request Song</span></a>
+            <a @click="ajaxSongRequest"><span class="more-info-request"><i class="material-icons">audiotrack</i>Request Song</span></a>
+            <div class="request-response" v-if="requestHeader">
+              <h2>{{ requestHeader }}</h2>
+              <h3>{{ requestBody }}</h3>
+            </div>
           </div>
         </div>
       </div>
-      <div class="modal-overlay" v-show="moreInfoModalDisplay" @click="toggleMoreInfoModal" key="2"></div>
+      <div class="modal-overlay" v-show="moreInfoModalDisplay" @click="closeModal" key="2"></div>
     </transition-group>
 </template>
 
 <script>
 import { mapState, mapMutations } from 'vuex'
+import axios from 'axios'
 
 export default {
   name: 'More-Info-Modal',
   data () {
     return {
+      corsProxy: 'https://cors-anywhere.herokuapp.com/',
       requestUrl: 'http://request.audiorealm.com/req/req.html?songID=',
-      portHost: '&samport=1221&samhost=73.254.166.70'
+      portHost: '&samport=1221&samhost=73.254.166.70',
+      requestHeader: '',
+      requestBody: ''
     }
   },
   computed: {
     ...mapState([
       'moreInfoModalDisplay',
       'modalObject'
-    ]),
-    // eslint-disable-next-line vue/return-in-computed-property
-    requestSong () {
-      if (this.modalObject.songid) {
-        return this.requestUrl + this.modalObject.songid + this.portHost
-      }
-    }
+    ])
   },
   methods: {
     ...mapMutations([
       'toggleMoreInfoModal'
     ]),
-    openWindow (link) {
-      window.open(link, 'Request Song', 'width=300,height=300')
+    closeModal () {
+      this.requestHeader = ''
+      this.requestBody = ''
+      this.toggleMoreInfoModal()
+    },
+    ajaxSongRequest () {
+      const parser = new DOMParser()
+      axios
+        .get(`${this.corsProxy}${this.requestUrl}${this.modalObject.songid}${this.portHost}`, {
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        })
+        .then(res => {
+          const doc = parser.parseFromString(res.data, 'text/html')
+          const responseElement = doc.getElementById('content')
+          this.requestHeader = responseElement.children[0].innerHTML
+          this.requestBody = responseElement.children[1].innerHTML.replace('<br>', '')
+        })
     }
   }
 }
@@ -65,6 +84,12 @@ export default {
 .more-info-header {
   font-weight: 500;
   font-size: 32px;
+}
+.more-info-request {
+  cursor: pointer;
+}
+.more-info-request:hover {
+  color: black;
 }
 .fade-enter-active, .fade-leave-active {
   transition: opacity .8s;
