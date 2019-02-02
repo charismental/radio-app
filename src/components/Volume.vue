@@ -1,6 +1,6 @@
 <template>
     <div class="volume-slider">
-        <input type="range" id="volume-slider-input" name="volume-slider" min="25" max="100" step=".75" v-model="volume" :title="volume">
+        <input type="range" id="volume-slider-input" name="volume-slider" min="25" max="100" step=".75" v-model="volume">
     </div>
 </template>
 
