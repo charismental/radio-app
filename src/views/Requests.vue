@@ -36,7 +36,7 @@ export default {
   },
   data () {
     return {
-      search: 'vineyard',
+      search: '',
       allSongs: db
     }
   },
@@ -44,7 +44,7 @@ export default {
     // eslint-disable-next-line vue/return-in-computed-property
     filteredSongs () {
       if (this.search) {
-        return this.allSongs.filter(o => o.artist.toLowerCase().includes(this.search))
+        return this.allSongs.filter(o => o.artist.toLowerCase().includes(this.search.toLowerCase()))
       }
     }
   },
