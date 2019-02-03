@@ -1,16 +1,16 @@
 <template>
-  <div class="history">
-    <div class="history-header">
+  <div class="request">
+    <div class="request-header">
       <div class="divider"><hr></div>
-      <span class="history-title">Recent History</span>
+      <input type="text" v-model="search">
       <div class="divider"><hr></div>
-      <div class="history-body">
-        <simplebar id="history-container" data-simplebar-auto-hide="true">
-          <div class="history-item" v-for="(song, i) in songHistory.slice(0,29)" :key="i">
-            <div class="history-album">
+      <div class="request-body">
+        <simplebar id="request-container" data-simplebar-auto-hide="true">
+          <div class="request-item" v-for="(song, i) in filteredSongs" :key="i">
+            <div class="request-album">
               <img :src="itemImg(song)" @click="setToggleModal(song)" onerror="this.src='https://radiomv.org/samHTMweb/customMissing.jpg'" alt="song.title" class="history-img">
             </div>
-            <div class="history-meta">
+            <div class="request-meta">
               <span @click="setToggleModal(song)" class="song-name">{{ song.title }}</span>
               <span @click="setToggleModal(song)" class="artist">{{ song.artist }}</span>
               <hr>
@@ -21,23 +21,32 @@
     </div>
   </div>
 </template>
-
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
+import db from '../db.json'
 import simplebar from 'simplebar-vue'
 import 'simplebar/dist/simplebar.min.css'
 // @ is an alias to /src
 // import RadioPlayer from '@/components/RadioPlayer.vue'
 
 export default {
-  name: 'history',
+  name: 'requests',
   components: {
     simplebar
   },
+  data () {
+    return {
+      search: 'vineyard',
+      allSongs: db
+    }
+  },
   computed: {
-    ...mapState([
-      'songHistory'
-    ])
+    // eslint-disable-next-line vue/return-in-computed-property
+    filteredSongs () {
+      if (this.search) {
+        return this.allSongs.filter(o => o.artist.toLowerCase().includes(this.search))
+      }
+    }
   },
   methods: {
     ...mapActions([
@@ -50,42 +59,34 @@ export default {
       } else {
         return url + 'customMissing.jpg'
       }
-    },
-    itemUrl (item) {
-      if (item.buycd) {
-        return item.buycd
-      } else {
-        return 'https://www.radiomv.org'
-      }
     }
   }
 }
 </script>
 
 <style>
-.history {
+.request {
   position: absolute;
   display: flex;
   text-align: center;
   top: 181px;
   width: 100vw;
 }
-.history-header {
+.request-header {
   width: inherit;
   position: fixed;
 }
-.history-title {
+.request-title {
   font-weight: 500;
   font-size: 32px;
 }
-.history hr  {
+.request hr  {
   border: 0;
   height: 1px;
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
 }
-.history-body {
+.request-body {
   overflow: auto;
-  /* 58.5vh */
   max-height: calc(100vh - 250px);
   text-align: left;
   display: flex;
@@ -95,48 +96,48 @@ export default {
   cursor: pointer;
   width: inherit;
 }
-.history-body a {
+.request-body a {
   text-decoration: none;
 }
-.history-item {
+.request-item {
   height: 50px;
-  width: calc(100vw - 20px);
+  width: calc(100vw - 20px)
 }
-.history-item:first-child:hover {
+.request-item:first-child:hover {
   transform: scale(1.25) translate(30px,5px);
 }
-.history-item:hover {
+.request-item:hover {
   transform: scale(1.25) translate(30px,0px);
 }
-.history-item hr  {
+.request-item hr  {
   border: 0;
   height: 1px;
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
 }
-.history-item span {
+.request-item span {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
 }
-.history-img {
+.request-img {
   max-height: 42px;
   max-width: 42px;
   border: 1px solid white;
   border-radius: 10px;
 }
-.history-album {
+.request-album {
   float: left;
   padding-right: 10px;
   width: 50px;
   text-align: center;
 }
-.history-meta span.song-name {
+.request-meta span.song-name {
   font-family: "Open Sans", sans-serif;
   font-weight: 250;
   font-size: 16px;
   color: #fff;
   display: block; }
-.history-meta span.artist {
+.request-meta span.artist {
   font-family: "Open Sans", sans-serif;
   font-weight: 100;
   font-size: 12px;
@@ -144,23 +145,23 @@ export default {
   display: block;
 }
 @media screen and (min-width: 768px) {
-  .history-body {
+  .request-body {
     max-height: 375px;
     width: 360px;
   }
-  .history-header {
+  .request-header {
     width: 360px;
   }
-  .history-item {
+  .request-item {
     width: 340px;
   }
 }
 /* @media only screen and (max-width: 359px) and (min-width: 320px) {
-  .history-header {
+  .request-header {
     width: 320px;
   }
-  .history-body {
-    width: 305px;
+  .request-body {
+    width: 290px;
   }
 } */
 </style>

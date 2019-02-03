@@ -4,7 +4,7 @@
           <i class="material-icons md-36" v-if="!expandedPlayer">expand_more</i>
           <i class="material-icons md-36" v-else>expand_less</i>
         </div>
-        <div class="title-bar"><router-link to="/about" @click.native="minimizePlayer"><span>Radiomv.org</span></router-link></div>
+        <div class="title-bar"><router-link to="/requests" @click.native="minimizePlayer"><span>Radiomv.org</span></router-link></div>
         <div class="live-notice"><span class="live">LIVE&nbsp;&nbsp;</span><div class="live-dot"></div></div>
         <div class="nav-arrows">
           <router-link to="/" @click.native="minimizePlayer"><i class="material-icons md-36">navigate_before</i></router-link>

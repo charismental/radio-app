@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import History from './views/History.vue'
 import ComingUp from './views/ComingUp.vue'
+import Requests from './views/Requests.vue'
 
 Vue.use(Router)
 
@@ -18,6 +19,11 @@ export default new Router({
       path: '/queue',
       name: 'coming-up',
       component: ComingUp
+    },
+    {
+      path: '/requests',
+      name: 'requests',
+      component: Requests
     },
     {
       path: '/about',

@@ -12,7 +12,7 @@
             </div>
             <div class="queue-meta">
               <span @click="setToggleModal(song)" class="song-name">{{ song.title }}</span>
-              <span class="artist">{{ song.artist }}</span>
+              <span @click="setToggleModal(song)" class="artist">{{ song.artist }}</span>
               <hr>
             </div>
           </div>
