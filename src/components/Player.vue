@@ -65,11 +65,11 @@ export default {
   created () {
     this.getSongInfo()
     this.newInterval(setInterval(this.getSongInfo, this.refreshInterval))
-    window.addEventListener('keydown', (e) => {
-      if (e.key === ' ') {
-        this.playPause()
-      }
-    })
+    // window.addEventListener('keydown', (e) => {
+    //   if (e.key === ' ') {
+    //     this.playPause()
+    //   }
+    // })
   }
 }
 </script>
