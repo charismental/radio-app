@@ -2,11 +2,11 @@
   <div class="request">
     <div class="request-header">
       <div class="divider"><hr></div>
-      <input type="text" v-model="search">
+      <input class="request-input" type="text" v-model="search" @keyup="getSongs" v-focus placeholder="Search music...">
       <div class="divider"><hr></div>
       <div class="request-body">
         <simplebar id="request-container" data-simplebar-auto-hide="true">
-          <div class="request-item" v-for="(song, i) in filteredSongs" :key="i">
+          <div class="request-item" v-for="(song, i) in searchResults" :key="i">
             <div class="request-album">
               <img :src="itemImg(song)" @click="setToggleModal(song)" onerror="this.src='https://radiomv.org/samHTMweb/customMissing.jpg'" alt="song.title" class="history-img">
             </div>
@@ -23,9 +23,10 @@
 </template>
 <script>
 import { mapActions } from 'vuex'
-import db from '../db.json'
 import simplebar from 'simplebar-vue'
 import 'simplebar/dist/simplebar.min.css'
+import axios from 'axios'
+
 // @ is an alias to /src
 // import RadioPlayer from '@/components/RadioPlayer.vue'
 
@@ -34,24 +35,42 @@ export default {
   components: {
     simplebar
   },
-  data () {
-    return {
-      search: '',
-      allSongs: db
-    }
-  },
-  computed: {
-    // eslint-disable-next-line vue/return-in-computed-property
-    filteredSongs () {
-      if (this.search) {
-        return this.allSongs.filter(o => o.artist.toLowerCase().includes(this.search.toLowerCase()))
+  directives: {
+    focus: {
+      inserted: function (el) {
+        el.focus()
       }
     }
   },
+  data () {
+    return {
+      search: '',
+      api: 'http://73.254.166.70:3000/songs?q=',
+      searchResults: ''
+    }
+  },
+  // computed: {
+  //   // eslint-disable-next-line vue/return-in-computed-property
+  //   filteredSongs () {
+  //     if (this.search) {
+  //       return this.allSongs.filter(o => o.artist.toLowerCase().includes(this.search.toLowerCase()))
+  //     }
+  //   }
+  // },
   methods: {
     ...mapActions([
       'setToggleModal'
     ]),
+    getSongs () {
+      if (this.search && this.search.length > 3) {
+        axios
+          .get(this.api + this.search)
+          .then(res => res.data)
+          .then(payload => {
+            this.searchResults = payload
+          })
+      }
+    },
     itemImg (item) {
       const url = 'https://radiomv.org/samHTMweb/'
       if (item.picture) {
@@ -79,6 +98,16 @@ export default {
 .request-title {
   font-weight: 500;
   font-size: 32px;
+}
+.request-input {
+    border: none;
+    background: transparent;
+    font-size: 24px;
+    color: white;
+    padding-left: 15px;
+}
+.request-input:focus {
+  outline: none;
 }
 .request hr  {
   border: 0;
