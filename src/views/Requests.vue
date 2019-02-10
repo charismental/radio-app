@@ -45,7 +45,8 @@ export default {
   data () {
     return {
       search: '',
-      api: 'http://73.254.166.70:3000/songs?q=',
+      api1: 'https://api.mlab.com/api/1/databases/songlist/collections/songs?apiKey=MxT5bRs11urXAq91rBbbZdGRkVyxC0rB&q={%22combine%22:{%20$regex:%20%27(?i).*',
+      api2: ' .*%27%20}}',
       searchResults: ''
     }
   },
@@ -64,7 +65,7 @@ export default {
     getSongs () {
       if (this.search && this.search.length > 3) {
         axios
-          .get(this.api + this.search)
+          .get(this.api1 + this.search + this.api2)
           .then(res => res.data)
           .then(payload => {
             this.searchResults = payload
