@@ -63,7 +63,7 @@ export default {
       'setToggleModal'
     ]),
     getSongs () {
-      if (this.search && this.search.length > 3) {
+      if (this.search && this.search.length >= 3) {
         axios
           .get(this.api1 + this.search + this.api2)
           .then(res => res.data)

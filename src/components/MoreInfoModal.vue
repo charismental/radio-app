@@ -21,7 +21,7 @@
               </a>
             </div>
             <div class="request-response" v-if="requestHeader">
-              <h1 class="request-header" :class="[requestHeader === 'Request Successful' ? 'request-success' : '']">{{ requestHeader }}</h1>
+              <h1 class="request-response-header" :class="[requestHeader === 'Request Successful' ? 'request-success' : '']">{{ requestHeader }}</h1>
               <h3>{{ requestBody }}</h3>
             </div>
           </div>
@@ -78,7 +78,7 @@ export default {
           this.requestHeader = responseElement.children[0].innerHTML
           this.requestBody = responseElement.children[1].innerHTML.replace('<br>', '')
           this.requesting = false
-          setTimeout(() => { this.requestHeader = '' }, 4000)
+          // setTimeout(() => { this.requestHeader = '' }, 4000)
         })
     }
   }
@@ -89,9 +89,8 @@ export default {
 .request-response {
   text-align: center;
 }
-.request-header {
+.request-response-header {
   color: red;
-  position: static !important;
 }
 .request-success {
   color: green;
