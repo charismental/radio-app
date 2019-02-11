@@ -11,9 +11,17 @@
             <span class="more-info-album"><i class="material-icons">album</i> Album: {{ modalObject.album }}</span>
             <span class="more-info-duration"><i class="material-icons">av_timer</i>Duration: {{ modalObject.minsec }}</span>
             <span class="more-info-buycd" v-if="modalObject.buycd"><a :href="modalObject.buycd" target="_blank"><i class="material-icons">exit_to_app</i>Buy CD</a></span>
-            <a @click="ajaxSongRequest"><span class="more-info-request"><i class="material-icons">audiotrack</i>Request Song</span></a>
+            <div class="request-span" v-show="modalObject.songid">
+              <a @click="ajaxSongRequest">
+                <span class="more-info-request">
+                  <i class="material-icons">audiotrack</i>
+                  <span v-if="!requesting">Request Song</span>
+                  <span class="loading" v-else>Requesting</span>
+                </span>
+              </a>
+            </div>
             <div class="request-response" v-if="requestHeader">
-              <h2>{{ requestHeader }}</h2>
+              <h1 class="request-header" :class="[requestHeader === 'Request Successful' ? 'request-success' : '']">{{ requestHeader }}</h1>
               <h3>{{ requestBody }}</h3>
             </div>
           </div>
@@ -35,7 +43,9 @@ export default {
       requestUrl: 'http://request.audiorealm.com/req/req.html?songID=',
       portHost: '&samport=1221&samhost=73.254.166.70',
       requestHeader: '',
-      requestBody: ''
+      requestBody: '',
+      requesting: false
+
     }
   },
   computed: {
@@ -54,6 +64,7 @@ export default {
       this.toggleMoreInfoModal()
     },
     ajaxSongRequest () {
+      this.requesting = true
       const parser = new DOMParser()
       axios
         .get(`${this.corsProxy}${this.requestUrl}${this.modalObject.songid}${this.portHost}`, {
@@ -66,6 +77,8 @@ export default {
           const responseElement = doc.getElementById('content')
           this.requestHeader = responseElement.children[0].innerHTML
           this.requestBody = responseElement.children[1].innerHTML.replace('<br>', '')
+          this.requesting = false
+          setTimeout(() => { this.requestHeader = '' }, 4000)
         })
     }
   }
@@ -73,6 +86,16 @@ export default {
 </script>
 
 <style>
+.request-response {
+  text-align: center;
+}
+.request-header {
+  color: red;
+  position: static !important;
+}
+.request-success {
+  color: green;
+}
 .modal-inner hr  {
   border: 0;
   height: 1px;
@@ -85,11 +108,31 @@ export default {
   font-weight: 500;
   font-size: 32px;
 }
-.more-info-request {
+.more-info-request span {
   cursor: pointer;
+  display: inline-block !important;
 }
 .more-info-request:hover {
   color: black;
+}
+.loading:after {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+  -webkit-animation: ellipsis steps(4,end) 900ms infinite;
+  animation: ellipsis steps(4,end) 900ms infinite;
+  content: "\2026";
+  width: 0px;
+}
+@keyframes ellipsis {
+  to {
+    width: 1.25em;
+  }
+}
+@-webkit-keyframes ellipsis {
+  to {
+    width: 1.25em;
+  }
 }
 .fade-enter-active, .fade-leave-active {
   transition: opacity .8s;
@@ -117,7 +160,8 @@ export default {
 .modal-body {
   text-align: left;
   padding-left: 15px;
-    padding-top: 10px;
+  padding-right: 15px;
+  padding-top: 10px;
 }
 .modal-body a {
   text-decoration: none;
