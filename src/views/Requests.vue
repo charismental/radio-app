@@ -46,7 +46,7 @@ export default {
     return {
       search: '',
       api1: 'https://api.mlab.com/api/1/databases/songlist/collections/songs?apiKey=MxT5bRs11urXAq91rBbbZdGRkVyxC0rB&q={%22combine%22:{%20$regex:%20%27(?i).*',
-      api2: ' .*%27%20}}',
+      api2: '.*%27%20}}',
       searchResults: ''
     }
   },
