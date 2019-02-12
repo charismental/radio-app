@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import History from './views/History.vue'
 import ComingUp from './views/ComingUp.vue'
 import Requests from './views/Requests.vue'
+import Speakers from './views/Speakers.vue'
 
 Vue.use(Router)
 
@@ -13,6 +14,11 @@ export default new Router({
       path: '/',
       name: 'history',
       component: History
+    },
+    {
+      path: '/speakers',
+      name: 'Speakers',
+      component: Speakers
     },
     {
       path: '/queue',

@@ -63,6 +63,12 @@ export default {
 </script>
 
 <style>
+@supports not (-ms-ime-align: auto) {
+   /* non-Microsoft Edge */
+  .history-header {
+    width:inherit;
+  }
+}
 .history {
   position: absolute;
   display: flex;
@@ -71,7 +77,6 @@ export default {
   width: 100vw;
 }
 .history-header {
-  width: inherit;
   position: fixed;
 }
 .history-title {

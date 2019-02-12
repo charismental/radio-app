@@ -59,22 +59,18 @@ export default {
       'isPlaying',
       'expandedPlayer',
       'refreshInterval',
-      'songInfo'
+      'songInfo',
+      'menuToggle'
     ])
   },
   created () {
     this.getSongInfo()
     this.newInterval(setInterval(this.getSongInfo, this.refreshInterval))
-    // window.addEventListener('keydown', (e) => {
-    //   if (e.key === ' ') {
-    //     this.playPause()
-    //   }
-    // })
   }
 }
 </script>
 
-<style scoped>
+<style>
 .player {
   position: relative;
   display: grid;

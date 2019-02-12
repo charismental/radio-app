@@ -33,6 +33,7 @@ export default new Vuex.Store({
       'Scourby'
     ],
     // toggles
+    menuToggle: false,
     history: false,
     isPlaying: false,
     loading: true,
@@ -40,14 +41,25 @@ export default new Vuex.Store({
     expandedPlayer: true
   },
   mutations: {
+    toggleMenu (state) {
+      state.menuToggle = !state.menuToggle
+    },
+    menuDisable (state) {
+      state.menuToggle = false
+    },
     setModalObject (state, payload) {
       state.modalObject = payload
     },
     toggleExpandedPlayer (state) {
       state.expandedPlayer = !state.expandedPlayer
     },
+    expandPlayerCloseMenu (state) {
+      state.expandedPlayer = true
+      state.menuToggle = false
+    },
     minimizePlayer (state) {
       state.expandedPlayer = false
+      state.menuToggle = false
     },
     toggleMoreInfoModal (state) {
       state.moreInfoModalDisplay = !state.moreInfoModalDisplay

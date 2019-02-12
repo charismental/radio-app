@@ -85,6 +85,12 @@ export default {
 </script>
 
 <style>
+@supports not (-ms-ime-align: auto) {
+   /* non-Microsoft Edge */
+  .request-header {
+    width:inherit;
+  }
+}
 .request {
   position: absolute;
   display: flex;
@@ -93,7 +99,6 @@ export default {
   width: 100vw;
 }
 .request-header {
-  width: inherit;
   position: fixed;
 }
 .request-title {
