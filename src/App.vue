@@ -95,8 +95,9 @@ export default {
     margin-top: 8px;
   }
     .bm-menu {
-    left: 274px;
+    left: 50%;
     height: 581px;
+    margin-left: -180px;
     top: 8px;
     border-radius: 10px;
   }
