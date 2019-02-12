@@ -27,3 +27,12 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Replace this in node_modules/vue-burger-menu common.js
+    this.$nextTick(function () {
+      if (screen.width < 768) {
+        document.getElementById('sideNav').style.width = '100%';
+      } else {
+        document.getElementById('sideNav').style.width = this.width ? this.width + 'px' : '360px';
+      }
+    });
