@@ -10,7 +10,7 @@
       <router-link to="/queue" @click.native="minimizePlayer">
         <i class="material-icons">skip_next</i><span>Upcoming</span>
       </router-link>
-      <router-link to="/speakers" @click.native="minimizePlayer">
+      <router-link to="/schedule" @click.native="minimizePlayer">
         <i class="material-icons">schedule</i><span>Schedule</span>
       </router-link>
       <router-link to="/requests" @click.native="minimizePlayer">

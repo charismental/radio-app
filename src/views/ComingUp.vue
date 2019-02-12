@@ -8,7 +8,7 @@
         <simplebar id="queue-container" data-simplebar-auto-hide="true">
           <div class="queue-item" v-for="(song, i) in songQueue.slice(0,18)" :key="i">
             <div class="queue-album">
-              <img :src="itemImg(song)" @click="setToggleModal(song)" onerror="this.src='https://radiomv.org/samHTMweb/customMissing.jpg'" alt="song.title" class="history-img">
+              <img :src="itemImg(song)" @click="setToggleModal(song)" onerror="this.src='https://radiomv.org/samHTMweb/customMissing.jpg'" alt="song.title" class="queue-img">
             </div>
             <div class="queue-meta">
               <span @click="setToggleModal(song)" class="song-name">{{ song.title }}</span>
