@@ -15,7 +15,7 @@
               <a @click="ajaxSongRequest">
                 <span class="more-info-request">
                   <i class="material-icons">audiotrack</i>
-                  <span v-if="!requesting">Request Song</span>
+                  <span v-if="!requesting">Click to request this song</span>
                   <span class="loading" v-else>Requesting</span>
                 </span>
               </a>
@@ -107,12 +107,16 @@ export default {
   font-weight: 500;
   font-size: 32px;
 }
+.more-info-request{
+  color: darkslateblue;
+}
 .more-info-request span {
   cursor: pointer;
+  font-size: 20px;
   display: inline-block !important;
 }
 .more-info-request:hover {
-  color: black;
+  color: darkblue;
 }
 .loading:after {
   overflow: hidden;
