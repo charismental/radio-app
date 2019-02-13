@@ -16,13 +16,13 @@
       <router-link to="/requests" @click.native="minimizePlayer">
         <i class="material-icons">music_note</i><span>Requests</span>
       </router-link>
-      <router-link to="/" @click.native="minimizePlayer">
+      <router-link to="/donate" @click.native="minimizePlayer">
         <i class="material-icons">attach_money</i><span>Donate</span>
       </router-link>
       <router-link to="/about" @click.native="minimizePlayer">
         <i class="material-icons">info</i><span>About</span>
       </router-link>
-      <router-link to="/" @click.native="minimizePlayer">
+      <router-link to="/contact" @click.native="minimizePlayer">
         <i class="material-icons">feedback</i><span>Contact</span>
       </router-link>
     </Slide>
@@ -95,10 +95,10 @@ export default {
     margin-top: 8px;
   }
     .bm-menu {
-    left: 50%;
-    height: 581px;
+    left: 50% !important;
+    height: 581px !important;
     margin-left: -180px;
-    top: 8px;
+    top: 8px !important;
     border-radius: 10px;
   }
 }

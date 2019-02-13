@@ -4,6 +4,8 @@ import History from './views/History.vue'
 import ComingUp from './views/ComingUp.vue'
 import Requests from './views/Requests.vue'
 import Schedule from './views/Schedule.vue'
+import Donate from './views/Donate.vue'
+import Contact from './views/Contact.vue'
 
 Vue.use(Router)
 
@@ -26,9 +28,19 @@ export default new Router({
       component: ComingUp
     },
     {
+      path: '/donate',
+      name: 'donate',
+      component: Donate
+    },
+    {
       path: '/requests',
       name: 'requests',
       component: Requests
+    },
+    {
+      path: '/contact',
+      name: 'contact',
+      component: Contact
     },
     {
       path: '/about',
