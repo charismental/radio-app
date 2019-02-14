@@ -62,6 +62,7 @@ export default {
       this.requestHeader = ''
       this.requestBody = ''
       this.toggleMoreInfoModal()
+      this.requestHeader = ''
     },
     ajaxSongRequest () {
       this.requesting = true
@@ -78,7 +79,7 @@ export default {
           this.requestHeader = responseElement.children[0].innerHTML
           this.requestBody = responseElement.children[1].innerHTML.replace('<br>', '')
           this.requesting = false
-          setTimeout(() => { this.requestHeader = '' }, 4000)
+          setTimeout(() => { this.closeModal() }, 4000)
         })
     }
   }

@@ -111,6 +111,15 @@ export default new Vuex.Store({
         .then(payload => {
           if (!temp.title || temp.title !== payload.song_info.title) {
             commit('setSongInfo', payload)
+            if ('mediaSession' in navigator) {
+              // eslint-disable-next-line no-undef
+              navigator.mediaSession.metadata = new MediaMetadata({
+                title: state.songInfo.title,
+                artist: state.songInfo.artist,
+                album: state.songInfo.album,
+                artwork: `https://radiomv.org/samHTMweb/${state.songInfo.picture}`
+              })
+            }
             if (state.loading === true) {
               commit('setLoading', false)
             }
