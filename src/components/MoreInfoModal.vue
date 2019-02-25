@@ -79,7 +79,7 @@ export default {
           this.requestHeader = responseElement.children[0].innerHTML
           this.requestBody = responseElement.children[1].innerHTML.replace('<br>', '')
           this.requesting = false
-          setTimeout(() => { this.closeModal() }, 4000)
+          setTimeout(() => { this.closeModal() }, 3300)
         })
     }
   }
