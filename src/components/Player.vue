@@ -15,13 +15,13 @@
     <div class="more-info">
       <i class="material-icons" @click="setToggleModal(songInfo)" :class="[expandedPlayer ? 'md-84' : 'md-36']">more_horiz</i>
     </div>
-    <volume />
+    <!-- <volume /> -->
   </div>
 </template>
 
 <script>
 import Timer from './Timer.vue'
-import Volume from './Volume.vue'
+// import Volume from './Volume.vue'
 import Feedback from './Feedback.vue'
 import TopBar from './TopBar.vue'
 import CurrentAlbumArt from './CurrentAlbumArt.vue'
@@ -33,7 +33,7 @@ export default {
   components: {
     Feedback,
     Timer,
-    Volume,
+    // Volume,
     TopBar,
     CurrentAlbumArt,
     CurrentMeta
@@ -52,7 +52,18 @@ export default {
       'playPause',
       'pause',
       'setToggleModal'
-    ])
+    ]),
+    setNavigatorMeta () {
+      if ('mediaSession' in navigator) {
+        // eslint-disable-next-line no-undef
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: this.songInfo.title,
+          artist: this.songInfo.artist,
+          album: this.songInfo.album,
+          artwork: `https://radiomv.org/samHTMweb/${this.songInfo.picture}`
+        })
+      }
+    }
   },
   computed: {
     ...mapState([
@@ -66,6 +77,15 @@ export default {
   created () {
     this.getSongInfo()
     this.newInterval(setInterval(this.getSongInfo, this.refreshInterval))
+    // if ('mediaSession' in navigator) {
+    //   // eslint-disable-next-line no-undef
+    //   navigator.mediaSession.metadata = new MediaMetadata({
+    //     title: 'Sample Title',
+    //     artist: 'Sample Artist',
+    //     album: 'Sample Album',
+    //     artwork: 'https://radiomv.org/samHTMweb/customMissing.jpg'
+    //   })
+    // }
   }
 }
 </script>
@@ -87,13 +107,14 @@ export default {
   position: fixed;
   display: grid;
   width: 100vw;
-  max-height: 181px;
+  max-height: 151px;
   grid-template-columns: 1.5fr 3.5fr 1fr;
-  grid-template-rows: 1fr 2fr 2fr 1fr;
+  grid-template-rows: 1fr 2fr 2fr;
+  /* 1fr; */
   grid-template-areas:"a a a"
                       "d e h"
-                      "g f i"
-                      "j j j";
+                      "g f i";
+                      /* "j j j"; */
 }
 @media screen and (min-width: 768px) {
   .player {

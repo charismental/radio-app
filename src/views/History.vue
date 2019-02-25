@@ -73,7 +73,7 @@ export default {
   position: absolute;
   display: flex;
   text-align: center;
-  top: 181px;
+  top: 151px;
   width: 100vw;
 }
 .history-header {
@@ -91,7 +91,7 @@ export default {
 .history-body {
   overflow: auto;
   /* 58.5vh */
-  max-height: calc(100vh - 250px);
+  max-height: calc(100vh - 220px);
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -150,7 +150,7 @@ export default {
 }
 @media screen and (min-width: 768px) {
   .history-body {
-    max-height: 375px;
+    max-height: 415px;
     width: 360px;
   }
   .history-header {

@@ -85,7 +85,7 @@ export default {
   position: absolute;
   display: flex;
   text-align: center;
-  top: 181px;
+  top: 151px;
   width: 100vw;
 }
 .contact-header {
