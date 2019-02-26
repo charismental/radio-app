@@ -2,7 +2,7 @@
   <div class="queue">
     <div class="queue-header">
       <div class="divider"><hr></div>
-      <span class="queue-title">Coming Up</span>
+      <span class="queue-title">Upcoming</span>
       <div class="divider"><hr></div>
       <div class="queue-body">
         <simplebar id="queue-container" data-simplebar-auto-hide="true">
