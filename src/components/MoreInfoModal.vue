@@ -3,6 +3,7 @@
 <template>
     <transition-group name="fade">
       <div class="more-info-modal" v-if="moreInfoModalDisplay" key="1">
+        <img :src="`https://radiomv.org/samHTMweb/${modalObject.picture}`" alt="">
         <div class="modal-inner">
           <span class="more-info-header">{{ modalObject.title }}</span>
           <div class="divider"><hr></div>
@@ -24,6 +25,7 @@
               <h1 class="request-response-header" :class="[requestHeader === 'Request Successful' ? 'request-success' : '']">{{ requestHeader }}</h1>
               <h3>{{ requestBody }}</h3>
             </div>
+            <div class="modal-close"><i class="material-icons" @click="closeModal">clear</i></div>
           </div>
         </div>
       </div>
@@ -109,15 +111,20 @@ export default {
   font-size: 32px;
 }
 .more-info-request{
-  color: darkslateblue;
+  color: darkviolet;
 }
 .more-info-request span {
   cursor: pointer;
   font-size: 20px;
   display: inline-block !important;
 }
+.modal-close {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
 .more-info-request:hover {
-  color: darkblue;
+  font-weight: 1000;
 }
 .loading:after {
   overflow: hidden;
@@ -149,18 +156,29 @@ export default {
 }
 .more-info-modal {
   position: absolute;
+  overflow: hidden;
   top: 50%;
   margin-top: -150px;
   min-height: 300px;
   width: 100vw;
   z-index: 1010;
   background: white;
-  color: #696969;
+  color: black;
   text-align: center;
   padding-top: 5px;
   border-radius: 10px 10px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
 }
+.more-info-modal img {
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  max-height: 100vh;
+  opacity: 0.2;
+}
+
 .modal-body {
   text-align: left;
   padding-left: 15px;
