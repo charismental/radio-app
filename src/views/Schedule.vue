@@ -213,13 +213,13 @@ export default {
 }
 .schedule-body {
   overflow: auto;
-  max-height: calc(100vh - 250px);
+  max-height: calc(100vh - 220px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   color: white;
   /* padding-left: 10px; */
-  padding-right: 10px;
+  /* padding-right: 10px; */
 }
 .schedule-item {
   height: 95px;
@@ -279,7 +279,7 @@ export default {
     width: 360px;
   }
   .schedule-body {
-    max-height: 375px;
+    max-height: 419px;
     width: 360px;
   }
   .schedule-header {
