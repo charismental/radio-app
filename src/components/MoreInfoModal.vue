@@ -58,12 +58,12 @@ export default {
   },
   methods: {
     ...mapMutations([
-      'toggleMoreInfoModal'
+      'modalClose'
     ]),
     closeModal () {
       this.requestHeader = ''
       this.requestBody = ''
-      this.toggleMoreInfoModal()
+      this.modalClose()
       this.requestHeader = ''
     },
     ajaxSongRequest () {
@@ -174,8 +174,8 @@ export default {
   z-index: -1;
   left: 0;
   top: 0;
-  width: 100%;
-  max-height: 100vh;
+  width: 150%;
+  max-height: 150vh;
   opacity: 0.2;
 }
 

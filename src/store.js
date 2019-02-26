@@ -64,6 +64,9 @@ export default new Vuex.Store({
     toggleMoreInfoModal (state) {
       state.moreInfoModalDisplay = !state.moreInfoModalDisplay
     },
+    modalClose (state) {
+      state.moreInfoModalDisplay = false
+    },
     volumeAdjustToggle (state) {
       state.volumeAdjust = !state.volumeAdjust
     },
