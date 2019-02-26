@@ -5,10 +5,7 @@
       <span class="contact-title">Contact Us</span>
       <div class="divider"><hr></div>
       <div class="contact-body">
-            <form class="contact-form" @submit.prevent="submit">
-                <!-- <div class="error-message">
-                    <p v-show="!email.valid">Please enter a valid email address.</p>
-                </div> -->
+            <form class="contact-form" action="https://getsimpleform.com/messages?form_api_token=34dc617384ac3409b37bd57d5a771cca" method="post">
                 <div>
                     <div>
                         <label class="label" for="name">Name</label>
@@ -54,9 +51,10 @@ export default {
     }
   },
   methods: {
-    submit () {
-      this.submitted = true
-    },
+    // submit () {
+    //   this.submitted = true
+    //   this.$router.push('/')
+    // },
     validate (type, value) {
       if (type === 'email') {
         this.email.valid = !!this.isEmail(value)
