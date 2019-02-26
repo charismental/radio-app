@@ -1,6 +1,6 @@
 <template>
   <div class="timer">
-    <div :class="[expandedPlayer ? 'expanded-timer' : 'minimized-timer']"><span>{{ time || "00:00" }}</span></div>
+    <div :class="[(expandedPlayer ? 'expanded-timer' : 'minimized-timer'), (time.length === 6 ? 'three' : ''), (time.length === 7 ? 'four' : '')]"><span>{{ time || "00:00" }}</span></div>
   </div>
 </template>
 
@@ -39,11 +39,31 @@ export default {
   margin-left: -10px;
   margin-top: 5px;
 }
+.expanded-timer.three span {
+  margin-left: -15px;
+  transform: scale(.5, 1);
+}
+.expanded-timer.four span {
+  margin-left: -35px;
+  transform: scale(.5, 1);
+}
 .minimized-timer span {
   font-size: 36px;
   transform: scale(.7, 1);
   display: inline-block;
   margin-left: 4px;
+}
+.minimized-timer.three span {
+  font-size: 31px;
+  padding-top: 10px;
+  transform: scale(.8, 1);
+  margin-left: 2px;
+}
+.minimized-timer.four span {
+  margin-left: -2px;
+  transform: scale(.8, 1);
+  font-size: 28px;
+  padding-top: 10px;
 }
 @media only screen and (max-width: 359px) and (min-width: 320px) {
   .minimized-timer span {
