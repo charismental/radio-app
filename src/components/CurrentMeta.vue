@@ -36,6 +36,7 @@ export default {
   padding-top: 5px;
   padding-left: 0;
   width: 210px;
+  white-space: nowrap;
 }
 .expanded-meta {
   padding-left: 15px;
