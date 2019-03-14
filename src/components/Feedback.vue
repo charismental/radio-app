@@ -1,41 +1,46 @@
 <template>
     <div class="feedback" :class="[expandedPlayer ? 'expanded-feedback' : 'minimized-feedback']">
-      <i class="material-icons" title="Thumbs Down" @click="thumbsDown" :class="[approval === 'thumbsDown' ? 'active' : '']">thumb_down_alt</i>
-      <i class="material-icons" title="Thumbs Up" @click="thumbsUp" :class="[approval === 'thumbsUp' ? 'active' : '']">thumb_up_alt</i>
+      <i class="material-icons" title="Thumbs Down" @click="thumbsDown" :class="[approval === false ? 'active' : '']">thumb_down_alt</i>
+      <i class="material-icons" title="Thumbs Up" @click="thumbsUp" :class="[approval === true ? 'active' : '']">thumb_up_alt</i>
     </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'Feedback',
-  data () {
-    return {
-      approval: ''
-    }
-  },
+  // data () {
+  //   return {
+  //     approval: ''
+  //   }
+  // },
   computed: {
     ...mapState([
       'expandedPlayer',
-      'songInfo'
+      'songInfo',
+      'approval'
     ])
   },
   methods: {
-    thumbsUp () {
-      if (this.approval === 'thumbsUp') {
-        this.approval = ''
-      } else {
-        this.approval = 'thumbsUp'
-      }
-    },
-    thumbsDown () {
-      if (this.approval === 'thumbsDown') {
-        this.approval = ''
-      } else {
-        this.approval = 'thumbsDown'
-      }
-    }
+    ...mapMutations([
+      'thumbsUp',
+      'thumbsDown'
+    ])
+    // thumbsUp () {
+    //   if (this.approval === 'thumbsUp') {
+    //     this.approval = ''
+    //   } else {
+    //     this.approval = 'thumbsUp'
+    //   }
+    // },
+    // thumbsDown () {
+    //   if (this.approval === 'thumbsDown') {
+    //     this.approval = ''
+    //   } else {
+    //     this.approval = 'thumbsDown'
+    //   }
+    // }
   },
   watch: {
     songInfo () {

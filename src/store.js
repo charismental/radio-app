@@ -34,7 +34,7 @@ export default new Vuex.Store({
       'Scourby'
     ],
     // toggles
-    // requestSuccess: false,
+    approval: '',
     menuToggle: false,
     history: false,
     isPlaying: false,
@@ -43,9 +43,20 @@ export default new Vuex.Store({
     expandedPlayer: true
   },
   mutations: {
-    // changeRequestSuccess (state, payload) {
-    //   state.requestSuccess = payload
-    // },
+    thumbsUp (state) {
+      if (state.approval === true) {
+        state.approval = ''
+      } else {
+        state.approval = true
+      }
+    },
+    thumbsDown (state) {
+      if (state.approval === false) {
+        state.approval = ''
+      } else {
+        state.approval = false
+      }
+    },
     toggleMenu (state) {
       state.menuToggle = !state.menuToggle
     },

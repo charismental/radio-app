@@ -21,6 +21,7 @@
                 </span>
               </a>
             </div>
+            <!-- <div class="modal-feedback"><feedback /></div> -->
             <div class="request-response" v-if="requestHeader">
               <h1 class="request-response-header" :class="[requestHeader === 'Request Successful' ? 'request-success' : '']">{{ requestHeader }}</h1>
               <h3>{{ requestBody }}</h3>
@@ -36,9 +37,13 @@
 <script>
 import { mapState, mapMutations, mapActions } from 'vuex'
 import axios from 'axios'
+import Feedback from './Feedback.vue'
 
 export default {
   name: 'More-Info-Modal',
+  components: {
+    Feedback
+  },
   data () {
     return {
       corsProxy: 'https://cors-anywhere.herokuapp.com/',
@@ -98,6 +103,10 @@ export default {
 </script>
 
 <style>
+.modal-feedback {
+  width: 50%;
+  margin: 0 auto;
+}
 .request-response {
   text-align: center;
 }
