@@ -18,6 +18,7 @@ export default new Vuex.Store({
     timerInterval: null,
     timerRunning: false,
     // meta objects
+    requestSongs: [],
     songInfo: '',
     songHistory: '',
     songQueue: '',
@@ -33,6 +34,7 @@ export default new Vuex.Store({
       'Scourby'
     ],
     // toggles
+    // requestSuccess: false,
     menuToggle: false,
     history: false,
     isPlaying: false,
@@ -41,6 +43,9 @@ export default new Vuex.Store({
     expandedPlayer: true
   },
   mutations: {
+    // changeRequestSuccess (state, payload) {
+    //   state.requestSuccess = payload
+    // },
     toggleMenu (state) {
       state.menuToggle = !state.menuToggle
     },
@@ -91,6 +96,7 @@ export default new Vuex.Store({
       state.songInfo = payload.song_info
       state.songHistory = payload.song_history
       state.songQueue = payload.song_queue
+      state.requestSongs = []
     },
     historyToggle (state) {
       state.history = !state.history
@@ -119,6 +125,9 @@ export default new Vuex.Store({
             }
           }
         })
+    },
+    updateRequestSongs ({ state, commit }, payload) {
+      state.requestSongs.push(payload)
     },
     setToggleModal ({ commit }, payload) {
       commit('setModalObject', payload)

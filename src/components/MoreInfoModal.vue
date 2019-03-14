@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations, mapActions } from 'vuex'
 import axios from 'axios'
 
 export default {
@@ -47,7 +47,6 @@ export default {
       requestHeader: '',
       requestBody: '',
       requesting: false
-
     }
   },
   computed: {
@@ -56,9 +55,19 @@ export default {
       'modalObject'
     ])
   },
+  watch: {
+    requestHeader: function () {
+      if (this.requestHeader === 'Request Successful') {
+        this.updateRequestSongs(this.modalObject)
+      }
+    }
+  },
   methods: {
     ...mapMutations([
       'modalClose'
+    ]),
+    ...mapActions([
+      'updateRequestSongs'
     ]),
     closeModal () {
       this.requestHeader = ''

@@ -16,6 +16,18 @@
               <hr>
             </div>
           </div>
+          <div class="requested-placeholder" v-if="requestSongs.length">
+            <div class="queue-item" v-for="(song, i) in requestSongs" :key="i">
+              <div class="queue-album">
+                <img :src="itemImg(song)" @click="setToggleModal(song)" onerror="this.src='https://radiomv.org/samHTMweb/customMissing.jpg'" alt="song.title" class="queue-img">
+              </div>
+              <div class="queue-meta">
+                <span @click="setToggleModal(song)" class="song-name">{{ song.title }}</span>
+                <span @click="setToggleModal(song)" class="artist">{{ song.artist }}</span>
+                <hr>
+              </div>
+            </div>
+          </div>
         </simplebar>
       </div>
     </div>
@@ -35,7 +47,8 @@ export default {
   },
   computed: {
     ...mapState([
-      'songQueue'
+      'songQueue',
+      'requestSongs'
     ])
   },
   methods: {
