@@ -78,7 +78,6 @@ export default {
       this.requestHeader = ''
       this.requestBody = ''
       this.modalClose()
-      this.requestHeader = ''
     },
     ajaxSongRequest () {
       this.requesting = true
