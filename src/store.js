@@ -137,7 +137,7 @@ export default new Vuex.Store({
           }
         })
     },
-    updateRequestSongs ({ state, commit }, payload) {
+    updateRequestSongs ({ state }, payload) {
       state.requestSongs.push(payload)
     },
     setToggleModal ({ commit }, payload) {

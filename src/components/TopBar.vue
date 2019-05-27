@@ -8,7 +8,7 @@
         <div class="live-notice"><span class="live">LIVE&nbsp;&nbsp;</span><div class="live-dot"></div></div>
         <div class="hamburger" @click="toggleMenu">
           <i class="material-icons md-36" v-if="!menuToggle">menu</i>
-          <i class="material-icons md-36" v-else>close</i>
+          <!-- <i class="material-icons md-36" v-else>close</i> -->
         </div>
     </div>
 </template>

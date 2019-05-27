@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Slide width="360" :crossIcon="false" :burgerIcon="false" noOverlay @closeMenu="menuDisable" :isOpen="menuToggle">
+    <Slide width="360" :burgerIcon="false" noOverlay @closeMenu="menuDisable" :isOpen="menuToggle">
       <router-link to="/" @click.native="expandPlayerCloseMenu">
         <i class="material-icons">home</i><span>Home</span>
       </router-link>
