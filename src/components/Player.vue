@@ -38,11 +38,11 @@ export default {
     CurrentAlbumArt,
     CurrentMeta
   },
-  data () {
-    return {
-      currentStream: 'http://136.0.16.57:8000/.stream'
-    }
-  },
+  // data () {
+  //   return {
+  //     currentStream: 'http://136.0.16.57:8000/.stream'
+  //   }
+  // },
   methods: {
     ...mapMutations([
       'newInterval'
@@ -71,7 +71,8 @@ export default {
       'expandedPlayer',
       'refreshInterval',
       'songInfo',
-      'menuToggle'
+      'menuToggle',
+      'currentStream'
     ])
   },
   created () {

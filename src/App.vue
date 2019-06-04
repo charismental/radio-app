@@ -25,6 +25,9 @@
       <router-link to="/contact" @click.native="minimizePlayer">
         <i class="material-icons">feedback</i><span>Contact</span>
       </router-link>
+      <router-link to="/" @click.native="pauseChangeQuality">
+        <i class="material-icons">library_music</i><span>{{ quality }}</span>
+      </router-link>
     </Slide>
     <player />
     <router-view v-if="!expandedPlayer" />
@@ -36,7 +39,7 @@
 import Player from '@/components/Player.vue'
 import MoreInfoModal from '@/components/MoreInfoModal.vue'
 import { Slide } from 'vue-burger-menu'
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations, mapActions } from 'vuex'
 
 export default {
   name: 'home',
@@ -48,7 +51,8 @@ export default {
   computed: {
     ...mapState([
       'expandedPlayer',
-      'menuToggle'
+      'menuToggle',
+      'quality'
     ])
   },
   methods: {
@@ -56,6 +60,9 @@ export default {
       'minimizePlayer',
       'expandPlayerCloseMenu',
       'menuDisable'
+    ]),
+    ...mapActions([
+      'pauseChangeQuality'
     ])
   }
 }

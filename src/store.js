@@ -6,6 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    currentStream: 'http://136.0.16.57:8000/.stream',
     // volume
     previousVolume: '',
     volume: 90,
@@ -34,6 +35,7 @@ export default new Vuex.Store({
       'Scourby'
     ],
     // toggles
+    quality: 'Medium',
     approval: '',
     menuToggle: false,
     history: false,
@@ -43,6 +45,15 @@ export default new Vuex.Store({
     expandedPlayer: true
   },
   mutations: {
+    toggleQuality (state) {
+      // if (state.currentStream === 'http://136.0.16.57:8000/.stream') {
+      //   state.currentStream = 'http://136.0.16.57:8006/.stream'
+      // } else {
+      //   state.currentStream = 'http://136.0.16.57:8000/.stream'
+      // }
+      state.currentStream = 'http://136.0.16.57:8006/.stream'
+      state.quality = 'High'
+    },
     thumbsUp (state) {
       if (state.approval === true) {
         state.approval = ''
@@ -123,6 +134,10 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    pauseChangeQuality ({ dispatch, commit }) {
+      commit('toggleQuality')
+      dispatch('pause')
+    },
     getSongInfo ({ state, commit }) {
       const temp = state.songInfo
       axios
