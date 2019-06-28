@@ -26,23 +26,17 @@ import Feedback from './Feedback.vue'
 import TopBar from './TopBar.vue'
 import CurrentAlbumArt from './CurrentAlbumArt.vue'
 import CurrentMeta from './CurrentMeta.vue'
-import { mapState, mapActions, mapMutations } from 'vuex'
+import { mapState, mapActions, mapMutations, mapGetters } from 'vuex'
 
 export default {
   name: 'Player',
   components: {
     Feedback,
     Timer,
-    // Volume,
     TopBar,
     CurrentAlbumArt,
     CurrentMeta
   },
-  // data () {
-  //   return {
-  //     currentStream: 'http://136.0.16.57:8000/.stream'
-  //   }
-  // },
   methods: {
     ...mapMutations([
       'newInterval'
@@ -71,7 +65,9 @@ export default {
       'expandedPlayer',
       'refreshInterval',
       'songInfo',
-      'menuToggle',
+      'menuToggle'
+    ]),
+    ...mapGetters([
       'currentStream'
     ])
   },

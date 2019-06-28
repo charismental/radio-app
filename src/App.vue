@@ -25,8 +25,14 @@
       <router-link to="/contact" @click.native="minimizePlayer">
         <i class="material-icons">feedback</i><span>Contact</span>
       </router-link>
-      <router-link to="/" @click.native="pauseChangeQuality">
-        <i class="material-icons">library_music</i><span>{{ quality }}</span>
+      <router-link to="/">
+        <i class="material-icons">library_music</i>
+        <input type="radio" id="high" value="8000" :checked="streamPort === 8000" @click="pauseChangeQuality(8000)">
+        <label for="high">HQ</label>
+        <input type="radio" id="med" value="8006" :checked="streamPort === 8006" @click="pauseChangeQuality(8006)">
+        <label for="med">MQ</label>
+        <input type="radio" id="low" value="8004" :checked="streamPort === 8004" @click="pauseChangeQuality(8004)">
+        <label for="low">LQ</label>
       </router-link>
     </Slide>
     <player />
@@ -52,7 +58,7 @@ export default {
     ...mapState([
       'expandedPlayer',
       'menuToggle',
-      'quality'
+      'streamPort'
     ])
   },
   methods: {

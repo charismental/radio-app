@@ -6,7 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    currentStream: 'http://136.0.16.57:8000/.stream',
+    streamPort: 8000,
     // volume
     previousVolume: '',
     volume: 90,
@@ -35,7 +35,6 @@ export default new Vuex.Store({
       'Scourby'
     ],
     // toggles
-    quality: 'Medium',
     approval: '',
     menuToggle: false,
     history: false,
@@ -45,14 +44,8 @@ export default new Vuex.Store({
     expandedPlayer: true
   },
   mutations: {
-    toggleQuality (state) {
-      // if (state.currentStream === 'http://136.0.16.57:8000/.stream') {
-      //   state.currentStream = 'http://136.0.16.57:8006/.stream'
-      // } else {
-      //   state.currentStream = 'http://136.0.16.57:8000/.stream'
-      // }
-      state.currentStream = 'http://136.0.16.57:8006/.stream'
-      state.quality = 'High'
+    setStreamPort (state, port) {
+      state.streamPort = port
     },
     thumbsUp (state) {
       if (state.approval === true) {
@@ -134,9 +127,10 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    pauseChangeQuality ({ dispatch, commit }) {
-      commit('toggleQuality')
+    pauseChangeQuality ({ dispatch, commit }, port) {
       dispatch('pause')
+      commit('setStreamPort', port)
+      setTimeout(() => dispatch('playPause'), 200)
     },
     getSongInfo ({ state, commit }) {
       const temp = state.songInfo
@@ -195,6 +189,11 @@ export default new Vuex.Store({
         commit('setPreviousVolume', state.volume)
         commit('updateVolume', 0)
       }
+    }
+  },
+  getters: {
+    currentStream: state => {
+      return `http://136.0.16.57:${state.streamPort}/.stream`
     }
   }
 })
