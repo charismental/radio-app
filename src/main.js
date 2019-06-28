@@ -8,5 +8,12 @@ Vue.config.productionTip = false
 new Vue({
   router,
   store,
+  beforeCreate () {
+    this.$store.commit('initializeStore')
+  },
   render: h => h(App)
 }).$mount('#app')
+
+store.subscribe((mutation, state) => {
+  localStorage.setItem('mySongs', JSON.stringify(state.mySongs))
+})

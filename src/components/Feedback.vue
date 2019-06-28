@@ -1,7 +1,7 @@
 <template>
     <div class="feedback" :class="[expandedPlayer ? 'expanded-feedback' : 'minimized-feedback']">
-      <i class="material-icons" title="Thumbs Down" @click="thumbsDown" :class="[approval === false ? 'active' : '']">thumb_down_alt</i>
-      <i class="material-icons" title="Thumbs Up" @click="thumbsUp" :class="[approval === true ? 'active' : '']">thumb_up_alt</i>
+      <i class="material-icons" title="Thumbs Down" @click="add({ song: song, approval: false })" :class="[approval === false ? 'active' : '']">thumb_down_alt</i>
+      <i class="material-icons" title="Thumbs Up" @click="add({ song: song, approval: true })" :class="[approval === true ? 'active' : '']">thumb_up_alt</i>
     </div>
 </template>
 
@@ -10,43 +10,57 @@ import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'Feedback',
-  // data () {
-  //   return {
-  //     approval: ''
-  //   }
-  // },
+  props: [
+    'song'
+  ],
+  data () {
+    return {
+      approval: ''
+    }
+  },
   computed: {
     ...mapState([
       'expandedPlayer',
-      'songInfo',
-      'approval'
+      'mySongs'
     ])
   },
   methods: {
     ...mapMutations([
-      'thumbsUp',
-      'thumbsDown'
-    ])
-    // thumbsUp () {
-    //   if (this.approval === 'thumbsUp') {
-    //     this.approval = ''
-    //   } else {
-    //     this.approval = 'thumbsUp'
-    //   }
-    // },
-    // thumbsDown () {
-    //   if (this.approval === 'thumbsDown') {
-    //     this.approval = ''
-    //   } else {
-    //     this.approval = 'thumbsDown'
-    //   }
-    // }
-  },
-  watch: {
-    songInfo () {
-      if (this.approval) {
+      'addToMySongs',
+      'removeFromMySongs',
+      'updateMySongsApproval'
+    ]),
+    setInitialApproval (song) {
+      const alreadyInMySongs = this.mySongs.some(s => s.songid === song.songid)
+      if (alreadyInMySongs) {
+        const index = this.mySongs.findIndex(s => s.songid === song.songid)
+        this.approval = this.mySongs[index].approval
+      } else {
         this.approval = ''
       }
+    },
+    add (payload) {
+      const prevApproval = this.approval
+      if (prevApproval === payload.approval) {
+        this.approval = ''
+        this.removeFromMySongs(payload)
+      } else {
+        const alreadyInMySongs = this.mySongs.some(s => s.songid === payload.song.songid)
+        this.approval = payload.approval
+        if (!alreadyInMySongs) {
+          this.addToMySongs(payload)
+        } else {
+          this.updateMySongsApproval(payload)
+        }
+      }
+    }
+  },
+  mounted () {
+    this.setInitialApproval(this.song)
+  },
+  watch: {
+    song () {
+      this.setInitialApproval(this.song)
     }
   }
 }

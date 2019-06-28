@@ -3,7 +3,7 @@
     <top-bar />
     <current-album-art />
     <current-meta />
-    <feedback />
+    <feedback :song="songInfo" />
     <timer />
     <div class="play-container" @click="playPause" @keyup.space="playPause">
       <i class="material-icons" :class="[expandedPlayer ? 'md-96' : 'md-48']" v-if="!isPlaying">play_circle_outline</i>

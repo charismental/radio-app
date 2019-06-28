@@ -20,6 +20,7 @@ export default new Vuex.Store({
     timerRunning: false,
     // meta objects
     requestSongs: [],
+    mySongs: [],
     songInfo: '',
     songHistory: '',
     songQueue: '',
@@ -35,7 +36,6 @@ export default new Vuex.Store({
       'Scourby'
     ],
     // toggles
-    approval: '',
     menuToggle: false,
     history: false,
     isPlaying: false,
@@ -44,22 +44,27 @@ export default new Vuex.Store({
     expandedPlayer: true
   },
   mutations: {
+    initializeStore (state) {
+      if (localStorage.getItem('mySongs')) {
+        const stored = JSON.parse(localStorage.getItem('mySongs'))
+        state.mySongs = [...stored]
+      }
+    },
+    addToMySongs (state, { song, approval }) {
+      const newSong = song
+      song.approval = approval
+      state.mySongs.push(newSong)
+    },
+    updateMySongsApproval (state, payload) {
+      const songIndex = state.mySongs.findIndex(s => s.songid === payload.song.songid)
+      state.mySongs[songIndex].approval = payload.approval
+    },
+    removeFromMySongs (state, payload) {
+      const songIndex = state.mySongs.findIndex(s => s.songid === payload.song.songid)
+      state.mySongs.splice(songIndex, 1)
+    },
     setStreamPort (state, port) {
       state.streamPort = port
-    },
-    thumbsUp (state) {
-      if (state.approval === true) {
-        state.approval = ''
-      } else {
-        state.approval = true
-      }
-    },
-    thumbsDown (state) {
-      if (state.approval === false) {
-        state.approval = ''
-      } else {
-        state.approval = false
-      }
     },
     toggleMenu (state) {
       state.menuToggle = !state.menuToggle
