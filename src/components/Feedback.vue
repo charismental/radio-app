@@ -84,9 +84,9 @@ export default {
     font-size: 36px;
     cursor: pointer;
 }
-.feedback i:hover {
+/* .feedback i:hover {
     transform: scale(1.2);
-}
+} */
 .active {
     color: #2F4F4F;
 }
