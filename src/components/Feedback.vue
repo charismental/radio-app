@@ -21,7 +21,8 @@ export default {
   computed: {
     ...mapState([
       'expandedPlayer',
-      'mySongs'
+      'mySongs',
+      'moreInfoModalDisplay'
     ])
   },
   methods: {
@@ -60,6 +61,9 @@ export default {
   },
   watch: {
     song () {
+      this.setInitialApproval(this.song)
+    },
+    moreInfoModalDisplay () {
       this.setInitialApproval(this.song)
     }
   }
