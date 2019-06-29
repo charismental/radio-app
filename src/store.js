@@ -199,6 +199,10 @@ export default new Vuex.Store({
   getters: {
     currentStream: state => {
       return `http://136.0.16.57:${state.streamPort}/.stream`
+    },
+    favoriteSongs: state => {
+      // eslint-disable-next-line eqeqeq
+      return state.mySongs.filter(s => s.approval == true)
     }
   }
 })

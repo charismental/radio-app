@@ -6,6 +6,7 @@ import Requests from './views/Requests.vue'
 import Schedule from './views/Schedule.vue'
 import Donate from './views/Donate.vue'
 import Contact from './views/Contact.vue'
+import Favorites from './views/Favorites.vue'
 
 Vue.use(Router)
 
@@ -41,6 +42,11 @@ export default new Router({
       path: '/contact',
       name: 'contact',
       component: Contact
+    },
+    {
+      path: '/favorites',
+      name: 'favorites',
+      component: Favorites
     },
     {
       path: '/about',

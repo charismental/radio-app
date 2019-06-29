@@ -34,6 +34,9 @@
         <input type="radio" id="low" value="8004" :checked="streamPort === 8004" @click="pauseChangeQuality(8004)">
         <label for="low">LQ</label>
       </router-link>
+      <router-link to="/favorites" @click.native="minimizePlayer">
+        <i class="material-icons">favorite</i><span>Favorites</span>
+      </router-link>
     </Slide>
     <player />
     <router-view v-if="!expandedPlayer" />
