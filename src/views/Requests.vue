@@ -50,14 +50,6 @@ export default {
       searchResults: ''
     }
   },
-  // computed: {
-  //   // eslint-disable-next-line vue/return-in-computed-property
-  //   filteredSongs () {
-  //     if (this.search) {
-  //       return this.allSongs.filter(o => o.artist.toLowerCase().includes(this.search.toLowerCase()))
-  //     }
-  //   }
-  // },
   methods: {
     ...mapActions([
       'setToggleModal'
