@@ -15,13 +15,11 @@
     <div class="more-info">
       <i class="material-icons" @click="setToggleModal(songInfo)" :class="[expandedPlayer ? 'md-84' : 'md-36']">more_horiz</i>
     </div>
-    <!-- <volume /> -->
   </div>
 </template>
 
 <script>
 import Timer from './Timer.vue'
-// import Volume from './Volume.vue'
 import Feedback from './Feedback.vue'
 import TopBar from './TopBar.vue'
 import CurrentAlbumArt from './CurrentAlbumArt.vue'
@@ -150,9 +148,6 @@ export default {
 .more-info {
   grid-area: i;
   margin: 0 auto;
-}
-.volume-slider {
-  grid-area: j;
 }
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }
