@@ -7,6 +7,7 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex'
+import axios from 'axios'
 
 export default {
   name: 'Feedback',
@@ -15,7 +16,8 @@ export default {
   ],
   data () {
     return {
-      approval: ''
+      approval: '',
+      ratedSong: ''
     }
   },
   computed: {
@@ -23,9 +25,40 @@ export default {
       'expandedPlayer',
       'mySongs',
       'moreInfoModalDisplay'
-    ])
+    ]),
+    api () {
+      return `https://api.mlab.com/api/1/databases/songlist/collections/rated?apiKey=MxT5bRs11urXAq91rBbbZdGRkVyxC0rB&q={%22songid%22:%22${this.song.songid}%22}`
+    }
   },
   methods: {
+    setSong () {
+      axios
+        .get(this.api)
+        .then(res => res.data[0])
+        .then(data => {
+          this.ratedSong = data
+        })
+    },
+    dislike () {
+      if (this.ratedSong) {
+        axios
+          .put(this.api, {
+            '_id': {
+              '$oid': this.ratedSong._id.$oid
+            },
+            'title': this.ratedSong.title,
+            'artist': this.ratedSong.artist,
+            'album': this.ratedSong.album,
+            'minsec': this.ratedSong.minsec,
+            'combine': this.ratedSong.combine,
+            'picture': this.ratedSong.picture,
+            'buycd': this.ratedSong.buycd,
+            'songid': this.ratedSong.songid,
+            'likes': this.ratedSong.likes,
+            'dislikes': this.ratedSong.dislikes + 1
+          })
+      }
+    },
     ...mapMutations([
       'addToMySongs',
       'removeFromMySongs',
@@ -49,8 +82,14 @@ export default {
         const alreadyInMySongs = this.mySongs.some(s => s.songid === payload.song.songid)
         this.approval = payload.approval
         if (!alreadyInMySongs) {
+          if (payload.approval === false) {
+            this.dislike()
+          }
           this.addToMySongs(payload)
         } else {
+          if (payload.approval === false) {
+            this.dislike()
+          }
           this.updateMySongsApproval(payload)
         }
       }
@@ -58,6 +97,7 @@ export default {
   },
   mounted () {
     this.setInitialApproval(this.song)
+    this.setSong()
   },
   watch: {
     song () {
