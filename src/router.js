@@ -14,12 +14,12 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
+      path: '/history',
       name: 'history',
       component: History
     },
     {
-      path: '/Schedule',
+      path: '/schedule',
       name: 'schedule',
       component: Schedule
     },
@@ -49,7 +49,7 @@ export default new Router({
       component: Favorites
     },
     {
-      path: '/about',
+      path: '/',
       name: 'about',
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route

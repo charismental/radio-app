@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <Slide width="360" :burgerIcon="false" noOverlay @closeMenu="menuDisable" :isOpen="menuToggle">
-      <router-link to="/" @click.native="expandPlayerCloseMenu">
-        <i class="material-icons">home</i><span>Home</span>
-      </router-link>
       <router-link to="/" @click.native="minimizePlayer">
+        <i class="material-icons">info</i><span>About</span>
+      </router-link>
+      <router-link to="/history" @click.native="minimizePlayer">
         <i class="material-icons">skip_previous</i><span>History</span>
       </router-link>
       <router-link to="/queue" @click.native="minimizePlayer">
@@ -19,11 +19,11 @@
       <router-link to="/donate" @click.native="minimizePlayer">
         <i class="material-icons">attach_money</i><span>Donate</span>
       </router-link>
-      <router-link to="/about" @click.native="minimizePlayer">
-        <i class="material-icons">info</i><span>About</span>
-      </router-link>
       <router-link to="/contact" @click.native="minimizePlayer">
         <i class="material-icons">feedback</i><span>Contact</span>
+      </router-link>
+      <router-link to="/favorites" @click.native="minimizePlayer">
+        <i class="material-icons">favorite</i><span>Favorites</span>
       </router-link>
       <router-link to="/">
         <i class="material-icons">library_music</i>
@@ -33,9 +33,6 @@
         <label for="med">MQ</label>
         <input type="radio" id="low" value="8004" :checked="streamPort === 8004" @click="pauseChangeQuality(8004)">
         <label for="low">LQ</label>
-      </router-link>
-      <router-link to="/favorites" @click.native="minimizePlayer">
-        <i class="material-icons">favorite</i><span>Favorites</span>
       </router-link>
     </Slide>
     <player />
@@ -51,7 +48,6 @@ import { Slide } from 'vue-burger-menu'
 import { mapState, mapMutations, mapActions } from 'vuex'
 
 export default {
-  name: 'home',
   components: {
     Player,
     MoreInfoModal,
@@ -67,7 +63,6 @@ export default {
   methods: {
     ...mapMutations([
       'minimizePlayer',
-      'expandPlayerCloseMenu',
       'menuDisable'
     ]),
     ...mapActions([
@@ -97,6 +92,7 @@ export default {
 .bm-menu {
   z-index: 50;
   opacity: .9;
+  /* padding-top: 25px !important; */
 }
 .bm-menu a {
   color: white;
@@ -116,6 +112,11 @@ export default {
     margin-left: -180px;
     top: 8px !important;
     border-radius: 10px;
+  }
+}
+@media screen and (max-height: 580px) {
+  .bm-menu {
+    padding-top: 20px;
   }
 }
 </style>
