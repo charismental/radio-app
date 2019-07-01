@@ -48,8 +48,7 @@ export default {
       search: '',
       api1: 'https://api.mlab.com/api/1/databases/songlist/collections/songs?apiKey=MxT5bRs11urXAq91rBbbZdGRkVyxC0rB&q={%22combine%22:{%20$regex:%20%27(?i).*',
       api2: '.*%27%20}}',
-      searchResults: '',
-      song: ''
+      searchResults: ''
     }
   },
   mounted () {
@@ -59,33 +58,6 @@ export default {
     ...mapActions([
       'setToggleModal'
     ]),
-    dislike () {
-      if (this.song) {
-        axios
-          .put('https://api.mlab.com/api/1/databases/songlist/collections/rated?apiKey=MxT5bRs11urXAq91rBbbZdGRkVyxC0rB&q={%22songid%22:%2214940%22}', {
-            '_id': {
-              '$oid': this.song._id.$oid
-            },
-            'title': this.song.title,
-            'artist': this.song.artist,
-            'album': this.song.album,
-            'minsec': this.song.minsec,
-            'combine': this.song.combine,
-            'picture': this.song.picture,
-            'buycd': this.song.buycd,
-            'songid': this.song.songid,
-            'dislikes': this.song.dislikes + 1
-          })
-      }
-    },
-    setSong () {
-      axios
-        .get('https://api.mlab.com/api/1/databases/songlist/collections/rated?apiKey=MxT5bRs11urXAq91rBbbZdGRkVyxC0rB&q={%22songid%22:%2214940%22}')
-        .then(res => res.data[0])
-        .then(data => {
-          this.song = data
-        })
-    },
     getSongs () {
       if (this.search && this.search.length >= 3) {
         axios
