@@ -7,10 +7,6 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     streamPort: 8000,
-    // volume
-    previousVolume: '',
-    volume: 90,
-    volumeAdjust: false,
     // fetch intervals
     refreshInterval: 10000,
     interval: '',
@@ -91,15 +87,6 @@ export default new Vuex.Store({
     },
     modalClose (state) {
       state.moreInfoModalDisplay = false
-    },
-    volumeAdjustToggle (state) {
-      state.volumeAdjust = !state.volumeAdjust
-    },
-    updateVolume (state, payload) {
-      state.volume = payload
-    },
-    setPreviousVolume (state, payload) {
-      state.previousVolume = payload
     },
     countupTimer (state) {
       if (state.timerRunning) {
@@ -186,14 +173,6 @@ export default new Vuex.Store({
     timerPause ({ state, commit }) {
       commit('setTimerRunning', false)
       clearInterval(state.timerInterval)
-    },
-    muteToggle ({ state, commit }) {
-      if (state.volume === 0) {
-        commit('updateVolume', state.previousVolume)
-      } else {
-        commit('setPreviousVolume', state.volume)
-        commit('updateVolume', 0)
-      }
     }
   },
   getters: {
@@ -201,6 +180,7 @@ export default new Vuex.Store({
       return `http://136.0.16.57:${state.streamPort}/.stream`
     },
     favoriteSongs: state => {
+      // doesn't work with triple equals...
       // eslint-disable-next-line eqeqeq
       return state.mySongs.filter(s => s.approval == true)
     }
