@@ -12,7 +12,7 @@
             <span class="more-info-buycd" v-if="modalObject.buycd"><a :href="modalObject.buycd" target="_blank"><i class="material-icons">exit_to_app</i>Buy CD</a></span>
             <div class="request-span" v-show="modalObject.songid">
               <a @click="ajaxSongRequest">
-                <span v-if="!modalObject.type || modalObject.type === 'S'" class="more-info-request">
+                <span v-if="!modalObject.type || (modalObject.type === 'S' && !modalObjectUnrequestable)" class="more-info-request">
                   <i class="material-icons">audiotrack</i>
                   <span v-if="!requesting">Click to request this song</span>
                   <span class="loading" v-else>Requesting</span>
@@ -57,8 +57,17 @@ export default {
   computed: {
     ...mapState([
       'moreInfoModalDisplay',
-      'modalObject'
-    ])
+      'modalObject',
+      'songInfo',
+      'songHistory',
+      'songQueue'
+    ]),
+    modalObjectUnrequestable () {
+      const allSongsID = this.songHistory
+        .concat(this.songQueue)
+        .map(s => s.songid)
+      return allSongsID.includes(this.modalObject.songid)
+    }
   },
   watch: {
     requestHeader: function () {
