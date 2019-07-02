@@ -1,8 +1,18 @@
 <template>
-    <div class="feedback" :class="[expandedPlayer ? 'expanded-feedback' : 'minimized-feedback']">
-      <i class="material-icons" title="Thumbs Down" @click="add({ song: song, approval: false })" :class="[approval === false ? 'active' : '']">thumb_down_alt</i>
-      <i class="material-icons" title="Thumbs Up" @click="add({ song: song, approval: true })" :class="[approval === true ? 'active' : '']">thumb_up_alt</i>
-    </div>
+  <div class="feedback" :class="[expandedPlayer ? 'expanded-feedback' : 'minimized-feedback']">
+    <i
+      class="material-icons"
+      title="Thumbs Down"
+      @click="add({ song: song, approval: false })"
+      :class="[approval === false ? 'active' : '']"
+    >thumb_down_alt</i>
+    <i
+      class="material-icons"
+      title="Thumbs Up"
+      @click="add({ song: song, approval: true })"
+      :class="[approval === true ? 'active' : '']"
+    >thumb_up_alt</i>
+  </div>
 </template>
 
 <script>
@@ -28,6 +38,9 @@ export default {
     ]),
     api () {
       return `https://api.mlab.com/api/1/databases/songlist/collections/rated?apiKey=MxT5bRs11urXAq91rBbbZdGRkVyxC0rB&q={%22songid%22:%22${this.song.songid}%22}`
+    },
+    thumbup () {
+      return `https://api.mlab.com/api/1/databases/songlist/collections/thumbsup?apiKey=MxT5bRs11urXAq91rBbbZdGRkVyxC0rB&q`
     }
   },
   methods: {
@@ -38,6 +51,12 @@ export default {
         .then(data => {
           this.ratedSong = data
         })
+    },
+    thumbsUp () {
+      axios
+        .get(this.thumbup)
+        .then(res => db.thumbsup.update({$inc: {"rating": 1}}))
+        .post(this.thumbup)
     },
     dislike () {
       if (this.ratedSong) {
@@ -112,26 +131,26 @@ export default {
 
 <style>
 .expanded-feedback {
-    padding-left: 10px;
-    padding-right: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .minimized-feedback {
-    padding-left: 35px;
-    padding-right: 35px;
+  padding-left: 35px;
+  padding-right: 35px;
 }
 .feedback {
-    padding-top: 10px;
-    display: flex;
-    justify-content: space-between;
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 .feedback i {
-    font-size: 36px;
-    cursor: pointer;
+  font-size: 36px;
+  cursor: pointer;
 }
 /* .feedback i:hover {
     transform: scale(1.2);
 } */
 .active {
-    color: #2F4F4F;
+  color: #2f4f4f;
 }
 </style>
