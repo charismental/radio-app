@@ -55,8 +55,13 @@ export default {
     thumbsUp () {
       axios
         .get(this.thumbup)
-        .then(res => db.thumbsup.update({$inc: {"rating": 1}}))
-        .post(this.thumbup)
+        .then(res => res.db.thumbsup.insertOne(this.ratedsong))
+        .post(db.thumbsup.update({_id: this.ratedsong}, {$inc: {rating: 1}}))
+        // the line above is a working MongoDB shell script for updating 1 item
+        // don't know whether should be another .then() block or .post() will suffice.
+        // need to figure out how to limit fields added to thumbsup collection in DB
+        // to prevent redundancy
+        .catch(err => {console.log(err)})
     },
     dislike () {
       if (this.ratedSong) {
