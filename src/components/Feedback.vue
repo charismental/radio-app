@@ -54,11 +54,13 @@ export default {
     },
     thumbsUp () {
       axios
-        const songId = this.ratedSong.songid
+        let setPowerhit = db.thumbsup.updateOne({songId}, {$gte: {rating: 10}, $set: {powerhit: true}}, {upsert: true})
+        let songId = this.ratedSong.songid
         .get(this.thumbup)
         .then(event => {
         if(event.songId === db.thumbsup.find({songId})) {
           (db.thumbsup.updateOne({songId: songId}, {$inc: {rating: 1}}))
+          setPowerhit
         } else {
           (res => res.db.thumbsup.insertOne({sondId: songId}, {songId: 1}, {$set: {rating: 1}}, {upsert: true}))
         }})
