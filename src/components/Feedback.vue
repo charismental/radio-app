@@ -60,7 +60,7 @@ export default {
         if(event.songId === db.thumbsup.find({songId})) {
           (db.thumbsup.updateOne({songId: songId}, {$inc: {rating: 1}}))
         } else {
-          (res => res.db.thumbsup.insertOne({sondId: songId}, {rating: 1}))
+          (res => res.db.thumbsup.insertOne({sondId: songId}, {$set: {rating: 1}}))
         }})
         .catch(err => {console.log(err)})
     },
