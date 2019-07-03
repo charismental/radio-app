@@ -5,7 +5,6 @@
       <input class="request-input" type="text" v-model="search" @keyup="getSongs" v-focus placeholder="Search music...">
       <div class="divider"><hr></div>
       <div class="request-body">
-        <a @click="dislike">dislike</a>
         <simplebar id="request-container" data-simplebar-auto-hide="true">
           <div class="request-item" v-for="(song, i) in searchResults" :key="i">
             <div class="request-album">
@@ -50,9 +49,6 @@ export default {
       api2: '.*%27%20}}',
       searchResults: ''
     }
-  },
-  mounted () {
-    this.setSong()
   },
   methods: {
     ...mapActions([
