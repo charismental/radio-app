@@ -48,7 +48,7 @@ export default {
     return {
       corsProxy: 'https://cors-anywhere.herokuapp.com/',
       requestUrl: 'http://request.audiorealm.com/req/req.html?songID=',
-      portHost: '&samport=1221&samhost=73.254.166.70',
+      portHost: '&samport=1221&samhost=67.182.155.220',
       requestHeader: '',
       requestBody: '',
       requesting: false
