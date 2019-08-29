@@ -6,6 +6,115 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    bible: [
+      {
+        name: 'Genesis',
+        index: 0,
+        chapters: [
+          {
+            number: 1,
+            path: '01_Genesis_01'
+          },
+          {
+            number: 2,
+            path: '01_Genesis_02'
+          },
+          {
+            number: 3,
+            path: '01_Genesis_03'
+          },
+          {
+            number: 4,
+            path: '01_Genesis_04'
+          },
+          {
+            number: 5,
+            path: '01_Genesis_05'
+          },
+          {
+            number: 6,
+            path: '01_Genesis_06'
+          },
+          {
+            number: 7,
+            path: '01_Genesis_07'
+          },
+          {
+            number: 8,
+            path: '01_Genesis_08'
+          },
+          {
+            number: 9,
+            path: '01_Genesis_09'
+          },
+          {
+            number: 10,
+            path: '01_Genesis_10'
+          },
+          {
+            number: 11,
+            path: '01_Genesis_11'
+          },
+          {
+            number: 12,
+            path: '01_Genesis_12'
+          },
+          {
+            number: 13,
+            path: '01_Genesis_13'
+          },
+          {
+            number: 14,
+            path: '01_Genesis_14'
+          },
+          {
+            number: 15,
+            path: '01_Genesis_15'
+          }
+        ]
+      },
+      {
+        name: 'Exodus',
+        index: 1,
+        chapters: [
+          {
+            number: 1,
+            path: '02_Exodus_01'
+          }
+        ]
+      },
+      {
+        name: 'Leviticus',
+        index: 2,
+        chapters: [
+          {
+            number: 1,
+            path: '03_Leviticus_01'
+          }
+        ]
+      },
+      {
+        name: 'Numbers',
+        index: 3,
+        chapters: [
+          {
+            number: 1,
+            path: '04_Numbers_01'
+          }
+        ]
+      },
+      {
+        name: 'Deuteronomy',
+        index: 4,
+        chapters: [
+          {
+            number: 1,
+            path: '05_Deuteronomy_01'
+          }
+        ]
+      }
+    ],
+    bookChapter: '01_Genesis_01',
     streamPort: 8000,
     // fetch intervals
     refreshInterval: 10000,
@@ -32,6 +141,7 @@ export default new Vuex.Store({
       'Scourby'
     ],
     // toggles
+    audioBible: false,
     menuToggle: false,
     history: false,
     isPlaying: false,
@@ -40,6 +150,12 @@ export default new Vuex.Store({
     expandedPlayer: true
   },
   mutations: {
+    switchToBible (state) {
+      state.audioBible = true
+    },
+    changeBookChapter (state, track) {
+      state.bookChapter = track
+    },
     initializeStore (state) {
       if (localStorage.getItem('mySongs')) {
         const stored = JSON.parse(localStorage.getItem('mySongs'))
@@ -124,6 +240,18 @@ export default new Vuex.Store({
       commit('setStreamPort', port)
       setTimeout(() => dispatch('playPause'), 200)
     },
+    pauseBibleSwitch ({ state, dispatch, commit }, track) {
+      if (track && state.bookChapter === track) {
+        return
+      } else if (track) {
+        dispatch('pause')
+        commit('changeBookChapter', track)
+      }
+      if (!state.audioBible) {
+        commit('switchToBible')
+      }
+      setTimeout(() => dispatch('playPause'), 200)
+    },
     getSongInfo ({ state, commit }) {
       const temp = state.songInfo
       axios
@@ -177,7 +305,7 @@ export default new Vuex.Store({
   },
   getters: {
     currentStream: state => {
-      return `http://136.0.16.57:${state.streamPort}/.stream`
+      return state.audioBible ? `http://radiomv.org/bible/${state.bookChapter}.mp3` : `http://136.0.16.57:${state.streamPort}/.stream`
     },
     favoriteSongs: state => {
       // doesn't work with triple equals...
