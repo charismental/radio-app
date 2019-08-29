@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <v-app id="app">
     <Slide width="360" :burgerIcon="false" noOverlay @closeMenu="menuDisable" :isOpen="menuToggle">
       <router-link to="/" @click.native="minimizePlayer">
         <i class="material-icons">info</i><span>About</span>
@@ -34,11 +34,14 @@
         <input type="radio" id="low" value="8004" :checked="streamPort === 8004" @click="pauseChangeQuality(8004)">
         <label for="low">LQ</label>
       </router-link>
+      <router-link to="/bible" @click.native="minimizePlayer">
+        <i class="material-icons">playlist_play</i><span>Audiobible</span>
+      </router-link>
     </Slide>
     <player />
     <router-view v-if="!expandedPlayer" />
     <more-info-modal />
-  </div>
+  </v-app>
 </template>
 <script>
 // @ is an alias to /src
