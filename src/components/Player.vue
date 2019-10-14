@@ -113,7 +113,7 @@ export default {
 }
 @media screen and (min-width: 768px) {
   .player {
-    max-height: 640px;
+    max-height: 641px;
   }
   .player1 {
     max-width: 360px;
