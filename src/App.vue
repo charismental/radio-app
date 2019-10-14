@@ -72,14 +72,17 @@ export default {
 }
 </script>
 <style>
+body {
+  background: linear-gradient(to bottom left, #4c3f77, #051126);
+}
 #app {
   position: relative;
-  background: url(./assets/background.png) no-repeat;
+  background: linear-gradient(to bottom right, #7c587f, #4c3f77);
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  color: #FFF;
+  color: #a4bcbc;
   display: grid;
   height: 100vh;
   -webkit-touch-callout: none;
@@ -102,15 +105,15 @@ export default {
     border-radius: 10px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
     margin: 0 auto;
-    width: 360px;
-    max-height: 640px;
-    margin-top: 8px;
+    width: 500px;
+    max-height: 740px;
+    margin-top: calc(5% - 14px);
   }
     .bm-menu {
     left: 50% !important;
     height: 581px !important;
     margin-left: -180px;
-    top: 8px !important;
+    top: calc(10% - 14px) !important;
     border-radius: 10px;
   }
 }

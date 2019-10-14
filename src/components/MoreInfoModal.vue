@@ -187,8 +187,8 @@ export default {
 .more-info-modal {
   position: absolute;
   overflow: hidden;
-  top: 50%;
-  margin-top: -150px;
+  top: 30%;
+  left: 1.1rem;
   min-height: 300px;
   width: 100vw;
   z-index: 1010;
@@ -229,11 +229,11 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(164, 188, 188, 0.8);
 }
 @media screen and (min-width: 768px) {
   .more-info-modal {
-    width: 360px;
+    width: 90%;
   }
 }
 </style>
