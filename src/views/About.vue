@@ -5,7 +5,7 @@
       <span class="about-title">About Us</span>
       <div class="divider"><hr></div>
       <div class="about-body">
-        <p>Radio of the Master's Voice is a one-of-a-kind station that is dedicated to the transmission of true worship and Spirit-inspired messages that will foster real spiritual growth in listeners. We are completely non-profit, and do not air advertisements--our station is completely faith-based and listener-supported.</p>
+        <p>GraceWay Radio is a one-of-a-kind station that is dedicated to the transmission of true worship and Spirit-inspired messages that will foster real spiritual growth in listeners. We are completely non-profit, and do not air advertisements--our station is completely faith-based and listener-supported.</p>
       </div>
     </div>
   </div>
