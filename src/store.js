@@ -127,7 +127,7 @@ export default new Vuex.Store({
     getSongInfo ({ state, commit }) {
       const temp = state.songInfo
       axios
-        .get('https://radiomv.org/samHTMweb/info.json')
+        .get('https://cascadechapel.com/samHTMweb/info.json')
         .then(res => res.data)
         .then(payload => {
           if (!temp.title || temp.title !== payload.song_info.title) {
@@ -177,7 +177,8 @@ export default new Vuex.Store({
   },
   getters: {
     currentStream: state => {
-      return `http://136.0.16.57:${state.streamPort}/.stream`
+      // return `http://136.0.16.57:${state.streamPort}/.stream`
+      return 'https://ssl.rcast.net/stream/64776'
     },
     favoriteSongs: state => {
       // doesn't work with triple equals...

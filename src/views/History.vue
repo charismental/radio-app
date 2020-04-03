@@ -8,7 +8,7 @@
         <simplebar id="history-container" data-simplebar-auto-hide="true">
           <div class="history-item" v-for="(song, i) in songHistory.slice(0,29)" :key="i">
             <div class="history-album">
-              <img :src="itemImg(song)" @click="setToggleModal(song)" onerror="this.src='https://radiomv.org/samHTMweb/customMissing.jpg'" alt="song.title" class="history-img">
+              <img :src="itemImg(song)" @click="setToggleModal(song)" onerror="this.src='https://cascadechapel.com/samHTMweb/customMissing.jpg'" alt="song.title" class="history-img">
             </div>
             <div class="history-meta">
               <span @click="setToggleModal(song)" class="song-name">{{ song.title }}</span>
@@ -44,7 +44,7 @@ export default {
       'setToggleModal'
     ]),
     itemImg (item) {
-      const url = 'https://radiomv.org/samHTMweb/'
+      const url = 'https://cascadechapel.com/samHTMweb/'
       if (item.picture) {
         return url + item.picture
       } else {
@@ -55,7 +55,7 @@ export default {
       if (item.buycd) {
         return item.buycd
       } else {
-        return 'https://www.radiomv.org'
+        return 'https://www.cascadechapel.com'
       }
     }
   }

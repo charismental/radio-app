@@ -8,7 +8,7 @@
         <simplebar id="request-container" data-simplebar-auto-hide="true">
           <div class="request-item" v-for="(song, i) in searchResults" :key="i">
             <div class="request-album">
-              <img :src="itemImg(song)" @click="setToggleModal(song)" onerror="this.src='https://radiomv.org/samHTMweb/customMissing.jpg'" alt="song.title" class="history-img">
+              <img :src="itemImg(song)" @click="setToggleModal(song)" onerror="this.src='https://cascadechapel.com/samHTMweb/customMissing.jpg'" alt="song.title" class="history-img">
             </div>
             <div class="request-meta">
               <span @click="setToggleModal(song)" class="song-name">{{ song.title }}</span>
@@ -65,7 +65,7 @@ export default {
       }
     },
     itemImg (item) {
-      const url = 'https://radiomv.org/samHTMweb/'
+      const url = 'https://cascadechapel.com/samHTMweb/'
       if (item.picture) {
         return url + item.picture
       } else {
