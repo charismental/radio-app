@@ -6,6 +6,8 @@
       <div class="divider"><hr></div>
       <div class="about-body">
         <p>GraceWay Radio is a one-of-a-kind station that is dedicated to the transmission of true worship and Spirit-inspired messages that will foster real spiritual growth in listeners. We are completely non-profit, and do not air advertisements--our station is completely faith-based and listener-supported.</p>
+        <br />
+        <a href="http://www.internet-radio.com" target="_blank">www.internet-radio.com</a>
       </div>
     </div>
   </div>
