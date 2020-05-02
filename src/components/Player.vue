@@ -52,7 +52,7 @@ export default {
           title: this.songInfo.title,
           artist: this.songInfo.artist,
           album: this.songInfo.album,
-          artwork: `https://radiomv.org/samHTMweb/${this.songInfo.picture}`
+          artwork: `https://cascadechapel.com/samHTMweb/${this.songInfo.picture}`
         })
       }
     }
@@ -78,7 +78,7 @@ export default {
     //     title: 'Sample Title',
     //     artist: 'Sample Artist',
     //     album: 'Sample Album',
-    //     artwork: 'https://radiomv.org/samHTMweb/customMissing.jpg'
+    //     artwork: 'https://cascadechapel.com/samHTMweb/customMissing.jpg'
     //   })
     // }
   }

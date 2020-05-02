@@ -1,7 +1,7 @@
 <template>
     <transition-group name="fade">
       <div class="more-info-modal" v-if="moreInfoModalDisplay" key="1">
-        <img :src="`https://radiomv.org/samHTMweb/${modalObject.picture}`" alt="">
+        <img :src="`https://cascadechapel.com/samHTMweb/${modalObject.picture}`" alt="">
         <div class="modal-inner">
           <span class="more-info-header">{{ modalObject.title }}</span>
           <div class="divider"><hr></div>

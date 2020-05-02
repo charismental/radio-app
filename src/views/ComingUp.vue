@@ -8,7 +8,7 @@
         <simplebar id="queue-container" data-simplebar-auto-hide="true">
           <div class="queue-item" v-for="(song, i) in songQueue.slice(0,-1)" :key="i">
             <div class="queue-album">
-              <img :src="itemImg(song)" @click="setToggleModal(song)" onerror="this.src='https://radiomv.org/samHTMweb/customMissing.jpg'" alt="song.title" class="queue-img">
+              <img :src="itemImg(song)" @click="setToggleModal(song)" onerror="this.src='https://cascadechapel.com/samHTMweb/customMissing.jpg'" alt="song.title" class="queue-img">
             </div>
             <div class="queue-meta">
               <span @click="setToggleModal(song)" class="song-name">{{ song.title }}</span>
@@ -19,7 +19,7 @@
           <div class="requested-placeholder" v-if="requestSongs.length">
             <div class="queue-item" v-for="(song, i) in requestSongs" :key="i">
               <div class="queue-album">
-                <img :src="itemImg(song)" @click="setToggleModal(song)" onerror="this.src='https://radiomv.org/samHTMweb/customMissing.jpg'" alt="song.title" class="queue-img">
+                <img :src="itemImg(song)" @click="setToggleModal(song)" onerror="this.src='https://cascadechapel.com/samHTMweb/customMissing.jpg'" alt="song.title" class="queue-img">
               </div>
               <div class="queue-meta">
                 <span @click="setToggleModal(song)" class="song-name">{{ song.title }}</span>
@@ -56,7 +56,7 @@ export default {
       'setToggleModal'
     ]),
     itemImg (item) {
-      const url = 'https://radiomv.org/samHTMweb/'
+      const url = 'https://cascadechapel.com/samHTMweb/'
       if (item.picture) {
         return url + item.picture
       } else {
@@ -67,7 +67,7 @@ export default {
       if (item.buycd) {
         return item.buycd
       } else {
-        return 'https://www.radiomv.org'
+        return 'https://www.cascadechapel.com'
       }
     }
   }

@@ -119,7 +119,7 @@ export default {
           'ministry': 'Ern Baxter Teaching Legacy',
           'timeslot': '1:30PM - 2:45PM',
           'picture': '../../assets/ern.png',
-          'homepage': 'https://www.radiomv.org/'
+          'homepage': 'https://www.gracewayradio.com/'
         },
         {
           'speaker': 'Alexander Scourby',
@@ -182,7 +182,7 @@ export default {
           'ministry': 'Ern Baxter Teaching Legacy',
           'timeslot': '11:00PM - 12:15AM',
           'picture': '../../assets/ern.png',
-          'homepage': 'https://www.radiomv.org/'
+          'homepage': 'https://www.gracewayradio.com/'
         }
       ]
     }

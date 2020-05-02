@@ -1,6 +1,6 @@
 <template>
     <div class="current-album-art" :class="[expandedPlayer ? 'expanded' : 'minimized']">
-        <img :src="itemImg(songInfo)" @click="setToggleModal(songInfo)" onerror="this.src='https://radiomv.org/samHTMweb/customMissing.jpg'" :alt="songInfo.title" />
+        <img :src="itemImg(songInfo)" @click="setToggleModal(songInfo)" onerror="this.src='https://cascadechapel.com/samHTMweb/customMissing.jpg'" :alt="songInfo.title" />
     </div>
 </template>
 
@@ -20,11 +20,12 @@ export default {
       'setToggleModal'
     ]),
     itemImg (item) {
-      const url = 'https://radiomv.org/samHTMweb/'
+      const url = 'https://cascadechapel.com/samHTMweb/'
       if (item.picture) {
         return url + item.picture
       } else if (this.loading) {
-        return url + 'loading.gif'
+        // return url + 'loading.gif'
+        return url + 'graceway.png'
       } else {
         return url + 'customMissing.jpg'
       }

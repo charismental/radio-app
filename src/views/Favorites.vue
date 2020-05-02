@@ -8,7 +8,7 @@
         <simplebar id="favorites-container" data-simplebar-auto-hide="true">
           <div class="favorites-item" v-for="song in favoriteSongs" :key="song.songid">
             <div class="favorites-album">
-              <img :src="itemImg(song)" @click="setToggleModal(song)" onerror="this.src='https://radiomv.org/samHTMweb/customMissing.jpg'" alt="song.title" class="favorites-img">
+              <img :src="itemImg(song)" @click="setToggleModal(song)" onerror="this.src='https://cascadechapel.com/samHTMweb/customMissing.jpg'" alt="song.title" class="favorites-img">
             </div>
             <div class="favorites-meta">
               <span @click="setToggleModal(song)" class="song-name">{{ song.title }}</span>
@@ -47,7 +47,7 @@ export default {
       'setToggleModal'
     ]),
     itemImg (item) {
-      const url = 'https://radiomv.org/samHTMweb/'
+      const url = 'https://cascadechapel.com/samHTMweb/'
       if (item.picture) {
         return url + item.picture
       } else {
@@ -58,7 +58,7 @@ export default {
       if (item.buycd) {
         return item.buycd
       } else {
-        return 'https://www.radiomv.org'
+        return 'https://www.cascadechapel.com'
       }
     }
   }
