@@ -5,6 +5,8 @@
       <span class="about-title">About Us</span>
       <div class="divider"><hr></div>
       <div class="about-body">
+        <img src="https://gracewayradio.com/img/gwr-logo2.jpg" width="100px" style="margin-left: auto; margin-right: auto" alt="Graceway Radio" />
+        <img src="https://gracewayradio.com/img/gwr.png" width="160px" style="margin: 10px auto 0" alt="Graceway Radio" />
         <p>GraceWay Radio is a one-of-a-kind station that is dedicated to the transmission of true worship and Spirit-inspired messages that will foster real spiritual growth in listeners. We are completely non-profit, and do not air advertisements--our station is completely faith-based and listener-supported.</p>
         <br />
         <a href="http://www.internet-radio.com" target="_blank">www.internet-radio.com</a>
