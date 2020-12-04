@@ -53,7 +53,7 @@
 } */
 @media only screen and (min-width: 768px) {
   .donate {
-    width: 360px;
+    width: 480px;
   }
 }
 </style>

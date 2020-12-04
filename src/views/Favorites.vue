@@ -153,14 +153,14 @@ export default {
 }
 @media screen and (min-width: 768px) {
   .favorites-body {
-    max-height: 415px;
-    width: 360px;
+    max-height: 515px;
+    width: 480px;
   }
   .favorites-header {
-    width: 360px;
+    width: 480px;
   }
   .favorites-item {
-    width: 340px;
+    width: 460px;
   }
 }
 /* @media only screen and (max-width: 359px) and (min-width: 320px) {

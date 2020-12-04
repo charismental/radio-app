@@ -177,7 +177,7 @@ export default {
 } */
 @media only screen and (min-width: 768px) {
   .contact {
-    width: 360px;
+    width: 480px;
   }
 }
 </style>

@@ -116,7 +116,7 @@ export default {
     max-height: 641px;
   }
   .player1 {
-    max-width: 360px;
+    max-width: 480px;
   }
 }
 @media only screen and (max-width: 359px) and (min-width: 320px) {

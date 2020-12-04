@@ -382,17 +382,17 @@ export default {
 }
 @media only screen and (min-width: 768px) {
   .schedule {
-    width: 360px;
+    width: 480px;
   }
   .schedule-body {
-    max-height: 419px;
-    width: 360px;
+    max-height: 515px;
+    width: 480px;
   }
   .schedule-header {
-    width: 360px;
+    width: 480px;
   }
   .schedule-item {
-    width: 340px;
+    width: 480px;
   }
 }
 @media only screen and (max-width: 359px) and (min-width: 320px) {

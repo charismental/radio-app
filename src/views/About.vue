@@ -56,7 +56,7 @@
 } */
 @media only screen and (min-width: 768px) {
   .about {
-    width: 360px;
+    width: 480px;
   }
 }
 </style>

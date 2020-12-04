@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Slide width="360" :burgerIcon="false" noOverlay @closeMenu="menuDisable" :isOpen="menuToggle">
+    <Slide width="500" :burgerIcon="false" noOverlay @closeMenu="menuDisable" :isOpen="menuToggle">
       <router-link to="/" @click.native="minimizePlayer">
         <i class="material-icons">info</i><span>About</span>
       </router-link>
@@ -107,13 +107,13 @@ body {
     margin: 0 auto;
     width: 500px;
     max-height: 740px;
-    margin-top: calc(5% - 14px);
+    margin-top: 5%;
   }
     .bm-menu {
     left: 50% !important;
-    height: 581px !important;
-    margin-left: -180px;
-    top: calc(10% - 14px) !important;
+    height: 681px !important;
+    margin-left: -250px;
+    margin-top: 5% !important;
     border-radius: 10px;
   }
 }
