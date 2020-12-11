@@ -177,8 +177,8 @@ export default new Vuex.Store({
   },
   getters: {
     currentStream: state => {
-      // return `http://136.0.16.57:${state.streamPort}/.stream`
-      return 'https://ssl.rcast.net/stream/64776'
+      return `http://136.0.16.57:${state.streamPort}/.stream`
+      // return 'https://ssl.rcast.net/stream/64776'
     },
     favoriteSongs: state => {
       // doesn't work with triple equals...
